@@ -1,0 +1,890 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="rbt-page-banner-wrapper background-choice">
+        <!-- Start Banner BG Image  -->
+        <div class=""></div>
+        <!-- End Banner BG Image  -->
+        <div class="rbt-banner-content">
+            <!-- Start Banner Content Top  -->
+            <div class="rbt-banner-content-top rbt-breadcrumb-style-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                            <div class="content text-center">
+                                <h2 class="title text-white">
+                                    Class <%= cls.classLevel %>, Section <%= cls.section %>(<small>
+                                                <%= cls.classType.charAt(0).toUpperCase()+cls.classType.slice(1) %>
+                                            </small>)
+
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Banner Content Top  -->
+        </div>
+    </div>
+
+    <div class="rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="inner">
+            <div class="container">
+                <div class="col-lg-12">
+
+                    <div class="row row--30 gy-5 pt--60">
+
+
+                        <div class="col-lg-4">
+                            <div class="course-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                                <div class="inner">
+                                    <div class="content-item-content">
+                                        <div class="rbt-widget-details has-show-more">
+                                            <div class="section-title">
+                                                <h4 class="rbt-title-style-3">Course Overview</h4>
+                                            </div>
+                                            <ul class="has-show-more-inner-content rbt-course-details-list-wrapper">
+                                                <li><span>Start Date</span><span class="rbt-feature-value rbt-badge-5">
+                                                        <%= `${cls.created.toLocaleString('default', { month: 'short'
+                                                            })} ${cls.created.getDate()} ${cls.created.getFullYear()}`;
+                                                            %>
+                                                    </span>
+                                                </li>
+                                                <% if(cls.students.length){ %>
+                                                    <li><span>Enrolled</span><span
+                                                            class="rbt-feature-value rbt-badge-5">
+                                                            <%= cls.students.length %>
+                                                        </span></li>
+                                                    <% } %>
+                                                        <% if(cls.courses.length){ %>
+                                                            <li><span>Subjects</span><span
+                                                                    class="rbt-feature-value rbt-badge-5">
+                                                                    <%= cls.courses.length %>
+                                                                </span></li>
+                                                            <% } %>
+
+                                                                <li><span>Class Level</span><span
+                                                                        class="rbt-feature-value rbt-badge-5">
+                                                                        <%= cls.classLevel %>
+                                                                    </span>
+                                                                </li>
+                                                                <li><span>Certificate</span><span
+                                                                        class="rbt-feature-value rbt-badge-5">Yes</span>
+                                                                </li>
+                                                                <li><span>Pass Percentage</span><span
+                                                                        class="rbt-feature-value rbt-badge-5">95%</span>
+                                                                </li>
+                                            </ul>
+                                            <div class="rbt-show-more-btn">Show More</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <!-- Start Course Details  -->
+                            <div class="course-details-content">
+                                <div class="rbt-inner-onepage-navigation sticky-top">
+                                    <nav class="mainmenu-nav onepagenav">
+                                        <ul class="mainmenu">
+                                            <li class="">
+                                                <a href="#coursecontent">Subject</a>
+                                            </li>
+                                            <li>
+                                                <a href="#review">Review</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+
+
+                                <!-- Start Course Content  -->
+                                <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30 p-0" id="intructor">
+
+                                    <div class="course-content rbt-shadow-box coursecontent-wrapper mt--30  p-1 p-sm-2 p-lg-4"
+                                        id="coursecontent">
+
+                                        <div class="rbt-course-feature-inner">
+                                            <div class="section-title">
+                                                <h4 class="rbt-title-style-3">Class Subjects</h4>
+                                            </div>
+                                            <% if (cls.courses.length){ %>
+                                                <div class="rbt-accordion-style rbt-accordion-02 accordion"
+                                                    style="margin-left: 2rem;">
+                                                    <div class="accordion" id="accordionExampleb2">
+                                                        <% for (let subject of cls.courses){ %>
+
+                                                            <div class="accordion-item card">
+                                                                <h2 class="accordion-header card-header"
+                                                                    id="headingTwo2">
+                                                                    <button class="accordion-button collapsed"
+                                                                        type="button" data-bs-toggle="collapse"
+                                                                        data-bs-target="#collapseTwo2<%= subject._id %>"
+                                                                        aria-expanded="false"
+                                                                        aria-controls="collapseTwo2<%= subject._id %>">
+                                                                        <%= subject.name.charAt(0).toUpperCase()+
+                                                                            subject.name.slice(1) %> <span
+                                                                                class="rbt-badge-5 ml--10">2hr
+                                                                                30min</span>
+                                                                    </button>
+                                                                </h2>
+
+                                                                <div id="collapseTwo2<%= subject._id %>"
+                                                                    class="accordion-collapse collapse"
+                                                                    aria-labelledby="headingTwo2"
+                                                                    data-bs-parent="#accordionExampleb2">
+                                                                    <div class="accordion-body card-body pr--0">
+                                                                        <h6>Materials and Assignments related to this
+                                                                            <%= subject.name.charAt(0).toUpperCase()+subject.name.slice(1)
+                                                                                %>
+                                                                        </h6>
+
+                                                                        <div class="col-12">
+                                                                            <div class="rbt-default-tab">
+                                                                                <ul class="nav nav-tabs tab-button"
+                                                                                    role="tablist">
+                                                                                    <li class="nav-item tabs__tab "
+                                                                                        role="presentation">
+                                                                                        <button class="nav-link"
+                                                                                            id="home-tab-5"
+                                                                                            data-bs-toggle="tab"
+                                                                                            data-bs-target="#home5"
+                                                                                            type="button" role="tab"
+                                                                                            aria-controls="home5"
+                                                                                            aria-selected="false">Materials</button>
+                                                                                    </li>
+                                                                                    <li class="nav-item tabs__tab "
+                                                                                        role="presentation">
+                                                                                        <button class="nav-link"
+                                                                                            id="profile-tab5"
+                                                                                            data-bs-toggle="tab"
+                                                                                            data-bs-target="#profile5"
+                                                                                            type="button" role="tab"
+                                                                                            aria-controls="profile5"
+                                                                                            aria-selected="false">Assignments</button>
+                                                                                    </li>
+                                                                                </ul>
+                                                                                <div
+                                                                                    class="rainbow-tab-content tab-content p-0">
+                                                                                    <div class="tab-pane fade"
+                                                                                        id="home5" role="tabpanel"
+                                                                                        aria-labelledby="home-tab-5">
+                                                                                        <ul
+                                                                                            class="rbt-course-main-content liststyle">
+                                                                                            <% if(subject.material.length){
+                                                                                                %>
+                                                                                                <% for (let material of
+                                                                                                    subject.material){
+                                                                                                    %>
+                                                                                                    <li>
+                                                                                                        <div id="<%= material._id %>+1"
+                                                                                                            class="pb-2">
+                                                                                                            <div
+                                                                                                                class="col-12 section-title">
+                                                                                                                <h2 class="accordion-header rbt-title-style-3 d-flex justify-content-between p-0 m-0 b-0"
+                                                                                                                    id="headingTwo2<%= material._id %>">
+                                                                                                                    <button
+                                                                                                                        class="accordion-button collapsed h5 p-5 border-bottom m-0 b-0"
+                                                                                                                        style="background-color: inherit;"
+                                                                                                                        type="button"
+                                                                                                                        data-bs-toggle="collapse"
+                                                                                                                        data-bs-target="#collapseTwo2<%= material._id %>"
+                                                                                                                        aria-expanded="false"
+                                                                                                                        aria-controls="collapseTwo2<%= material._id %>">
+                                                                                                                        <%= material.materialTitle.charAt(0).toUpperCase()+
+                                                                                                                            material.materialTitle.slice(1)
+                                                                                                                            %>
+                                                                                                                    </button>
+                                                                                                                    <svg viewBox="0 0 18 18"
+                                                                                                                        width="15"
+                                                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                                                        mirror-in-rtl="true"
+                                                                                                                        fill="#000000"
+                                                                                                                        transform="matrix(1, 0, 0, 1, 0, 0)rotate(90)">
+                                                                                                                        <g id="SVGRepo_bgCarrier"
+                                                                                                                            stroke-width="0">
+                                                                                                                        </g>
+                                                                                                                        <g id="SVGRepo_tracerCarrier"
+                                                                                                                            stroke-linecap="round"
+                                                                                                                            stroke-linejoin="round">
+                                                                                                                        </g>
+                                                                                                                        <g
+                                                                                                                            id="SVGRepo_iconCarrier">
+                                                                                                                            <path
+                                                                                                                                fill="#494c4e"
+                                                                                                                                d="M6 14V6c0-.4.2-.8.6-.9s.8-.1 1.1.2l4 4c.4.4.4 1 0 1.4l-4 4c-.3.3-.7.4-1.1.2-.4-.1-.6-.5-.6-.9zm2-5.6v3.2L9.6 10 8 8.4z">
+                                                                                                                            </path>
+                                                                                                                        </g>
+                                                                                                                    </svg>
+                                                                                                                </h2>
+                                                                                                            </div>
+                                                                                                            <div id="collapseTwo2<%= material._id %>"
+                                                                                                                class="accordion-collapse collapse"
+                                                                                                                aria-labelledby="headingTwo2<%= material._id %>"
+                                                                                                                data-bs-parent="#<%= material._id %>+1">
+                                                                                                                <div
+                                                                                                                    class="dashboard-summery-one mg-b-20 p-3 shadow position-relative p-lg-3">
+                                                                                                                    <div
+                                                                                                                        class="header p-3 pb-0">
+                                                                                                                        <h3
+                                                                                                                            class="m-0 p-0">
+                                                                                                                            <%= material.materialTitle
+                                                                                                                                %>
+                                                                                                                        </h3>
+                                                                                                                    </div>
+
+                                                                                                                    <div class="position-absolute"
+                                                                                                                        style="top: 0; right: 0;">
+                                                                                                                        <% if(material.createdAt){
+                                                                                                                            %>
+                                                                                                                            <small>
+                                                                                                                                <span
+                                                                                                                                    class="text-warning">Posted</span>
+                                                                                                                                <%= `${material.createdAt.toLocaleString('default',
+                                                                                                                                    {
+                                                                                                                                    month: 'short'
+                                                                                                                                    })}
+                                                                                                                                    ${material.createdAt.getDate()}
+                                                                                                                                    ${material.createdAt.getFullYear()}`;
+                                                                                                                                    %>
+                                                                                                                            </small>
+                                                                                                                            <% }
+                                                                                                                                %>
+                                                                                                                    </div>
+                                                                                                                    <div
+                                                                                                                        class="details d-flex flex-wrap justify-content-between col-12 pl-4">
+                                                                                                                        <div class="description col-12"
+                                                                                                                            data-detail="<%= material.materialDetail %>">
+                                                                                                                        </div>
+
+                                                                                                                        <% if
+                                                                                                                            (material.files){
+                                                                                                                            %>
+
+                                                                                                                            <% for
+                                                                                                                                (let
+                                                                                                                                file
+                                                                                                                                of
+                                                                                                                                material.files){
+                                                                                                                                %>
+
+                                                                                                                                <a target="_blank"
+                                                                                                                                    href="<%= `/teacher/subject/${cls.courses[0]._id}/material/${material._id}/file/${file.id}/view` %>"
+                                                                                                                                    class=" row align-items-center col-12 col-xl-6 p-0 mb-3 border">
+                                                                                                                                    <div
+                                                                                                                                        class="col-3 p-0">
+                                                                                                                                        <div class="item-icon bg-light-green m-2"
+                                                                                                                                            style="width: 7rem; height: 7rem;">
+                                                                                                                                            <% if
+                                                                                                                                                (file.filename.split('.')[1]=='docx'
+                                                                                                                                                ){
+                                                                                                                                                %>
+
+                                                                                                                                                <img class=""
+                                                                                                                                                    src="/svg/docx.svg"
+                                                                                                                                                    alt="">
+                                                                                                                                                <%}else
+                                                                                                                                                    if
+                                                                                                                                                    (file.filename.split('.')[1]=='jpg'
+                                                                                                                                                    ||
+                                                                                                                                                    file.filename.split('.')[1]=='png'
+                                                                                                                                                    ){
+                                                                                                                                                    %>
+                                                                                                                                                    <img src="/svg/image.svg"
+                                                                                                                                                        alt="">
+                                                                                                                                                    <%}else
+                                                                                                                                                        if
+                                                                                                                                                        (file.filename.split('.')[1]=='pdf'
+                                                                                                                                                        ){
+                                                                                                                                                        %>
+                                                                                                                                                        <img src="/svg/pdf.svg"
+                                                                                                                                                            alt="">
+                                                                                                                                                        <%}else{
+                                                                                                                                                            %>
+                                                                                                                                                            <img src="/svg/file.svg"
+                                                                                                                                                                alt="">
+                                                                                                                                                            <%}%>
+
+
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div
+                                                                                                                                        class="col-9">
+                                                                                                                                        <div
+                                                                                                                                            class="item-content">
+                                                                                                                                            <div
+                                                                                                                                                class="item-title">
+                                                                                                                                                <%= file.filename.substring(0,5)+'.'+file.filename.split('.')[1];
+                                                                                                                                                    %>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </a>
+                                                                                                                                <%}
+                                                                                                                                    %>
+                                                                                                                                    <%}
+                                                                                                                                        %>
+
+                                                                                                                    </div>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    <% } %>
+                                                                                                        <% }else{ %>
+                                                                                                            <li><a class="pl-5"
+                                                                                                                    href="#">
+                                                                                                                    <div
+                                                                                                                        class="course-content-left">
+                                                                                                                        <span
+                                                                                                                            class="text">No
+                                                                                                                            Material
+                                                                                                                            is
+                                                                                                                            added
+                                                                                                                            to
+                                                                                                                            this
+                                                                                                                            subject.</span>
+                                                                                                                    </div>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <% } %>
+                                                                                        </ul>
+                                                                                    </div>
+
+                                                                                    <div class="tab-pane fade"
+                                                                                        id="profile5" role="tabpanel"
+                                                                                        aria-labelledby="profile-tab5">
+                                                                                        <div class="col-12 p-0">
+                                                                                            <% if
+                                                                                                (cls.courses[0].assignment.length){
+                                                                                                %>
+                                                                                                <% for (let assignment
+                                                                                                    of
+                                                                                                    cls.courses[0].assignment){
+                                                                                                    %>
+
+                                                                                                    <div
+                                                                                                        class="dashboard-summery-one mg-b-20  shadow p-2 p-sm-3 p-lg-4">
+                                                                                                        <div
+                                                                                                            class="header position-relative">
+                                                                                                            <h3
+                                                                                                                class="pl-3">
+                                                                                                                <%= assignment.assignmentTitle
+                                                                                                                    %>
+                                                                                                            </h3>
+                                                                                                            <div class="position-absolute"
+                                                                                                                style="top: 0; right: 0;">
+                                                                                                                <% if(assignment.dueDate){
+                                                                                                                    %>
+                                                                                                                    <small>
+                                                                                                                        <span
+                                                                                                                            class="text-warning">Due
+                                                                                                                            Date</span>
+                                                                                                                        <%= `${assignment.dueDate.toLocaleString('default',
+                                                                                                                            {
+                                                                                                                            month: 'short'
+                                                                                                                            })}
+                                                                                                                            ${assignment.dueDate.getDate()}
+                                                                                                                            ${assignment.dueDate.getFullYear()}`;
+                                                                                                                            %>
+                                                                                                                    </small>
+                                                                                                                    <% }
+                                                                                                                        %>
+                                                                                                            </div>
+
+
+                                                                                                        </div>
+
+                                                                                                        <div
+                                                                                                            class="details d-flex flex-wrap justify-content-between col-12 pl-4 position-relative">
+                                                                                                            <div class="position-absolute"
+                                                                                                                style="bottom: 0; left: 0;">
+
+                                                                                                                <small>
+                                                                                                                    Posted
+                                                                                                                    <%= `${assignment.createdAt.toLocaleString('default',
+                                                                                                                        {
+                                                                                                                        month: 'short'
+                                                                                                                        })}
+                                                                                                                        ${assignment.createdAt.getDate()}
+                                                                                                                        ${assignment.createdAt.getFullYear()}`;
+                                                                                                                        %>
+                                                                                                                </small>
+
+                                                                                                            </div>
+
+                                                                                                            <% if(assignment.totalPoints){
+                                                                                                                %>
+                                                                                                                <div class="position-absolute"
+                                                                                                                    style="bottom: 0; right: 0;">
+                                                                                                                    <small>
+                                                                                                                        <em
+                                                                                                                            class="text-danger">
+                                                                                                                            Graded
+                                                                                                                        </em>
+                                                                                                                        <small>(
+                                                                                                                            <%= `${assignment.totalPoints}`;
+                                                                                                                                %>
+                                                                                                                                points)
+                                                                                                                        </small>
+                                                                                                                    </small>
+                                                                                                                </div>
+                                                                                                                <%}%>
+                                                                                                                    <div class="description col-12"
+                                                                                                                        data-detail="<%= assignment.assignmentDetail %>">
+                                                                                                                    </div>
+
+                                                                                                                    <% if
+                                                                                                                        (assignment.files){
+                                                                                                                        %>
+
+                                                                                                                        <% for
+                                                                                                                            (let
+                                                                                                                            file
+                                                                                                                            of
+                                                                                                                            assignment.files){
+                                                                                                                            %>
+
+                                                                                                                            <a target="_blank"
+                                                                                                                                href="<%= `/teacher/subject/${cls.courses[0]._id}/assignment/${assignment._id}/file/${file.id}/view` %>"
+                                                                                                                                class="row align-items-center col-12 col-xl-6 p-0 mb-5 border">
+                                                                                                                                <div
+                                                                                                                                    class="col-3 p-0">
+                                                                                                                                    <div class="item-icon bg-light-green m-2"
+                                                                                                                                        style="width: 7rem; height: 7rem;">
+                                                                                                                                        <% if
+                                                                                                                                            (file.filename.split('.')[1]=='docx'
+                                                                                                                                            ){
+                                                                                                                                            %>
+
+                                                                                                                                            <img class=""
+                                                                                                                                                src="/svg/docx.svg"
+                                                                                                                                                alt="">
+                                                                                                                                            <%}else
+                                                                                                                                                if
+                                                                                                                                                (file.filename.split('.')[1]=='jpg'
+                                                                                                                                                ||
+                                                                                                                                                file.filename.split('.')[1]=='png'
+                                                                                                                                                ){
+                                                                                                                                                %>
+                                                                                                                                                <img src="/svg/image.svg"
+                                                                                                                                                    alt="">
+                                                                                                                                                <%}else
+                                                                                                                                                    if
+                                                                                                                                                    (file.filename.split('.')[1]=='pdf'
+                                                                                                                                                    ){
+                                                                                                                                                    %>
+                                                                                                                                                    <img src="/svg/pdf.svg"
+                                                                                                                                                        alt="">
+                                                                                                                                                    <%}else{
+                                                                                                                                                        %>
+                                                                                                                                                        <img src="/svg/file.svg"
+                                                                                                                                                            alt="">
+                                                                                                                                                        <%}%>
+
+
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                                <div
+                                                                                                                                    class="col-9">
+                                                                                                                                    <div
+                                                                                                                                        class="item-content">
+                                                                                                                                        <div
+                                                                                                                                            class="item-title">
+                                                                                                                                            <%= file.filename.split('.')[0]
+                                                                                                                                                %>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </a>
+                                                                                                                            <%}
+                                                                                                                                %>
+                                                                                                                                <%}
+                                                                                                                                    %>
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    <%} %>
+                                                                                                        <%}else{ %>
+                                                                                                            <h4>No Class
+                                                                                                                Assignment
+                                                                                                                Uploaded
+                                                                                                            </h4>
+                                                                                                            <%} %>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+
+
+
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </div>
+                                                <% }else{ %>
+                                                    <div class="rbt-accordion-style rbt-accordion-02 accordion">
+                                                        <div class="accordion" id="accordionExampleb2">
+                                                            <div class="accordion-item card">
+                                                                <h2 class="accordion-header card-header"
+                                                                    id="headingTwo2">
+                                                                    No Subject added Yet
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                        </div>
+
+
+                                        <% } %>
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <!-- End Course Content  -->
+
+
+                                <!-- Start Edu Review List  -->
+                                <div class="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30" id="review">
+                                    <div class="course-content">
+                                        <div class="section-title">
+                                            <h4 class="rbt-title-style-3">Review</h4>
+                                        </div>
+                                        <div class="row g-5 align-items-center">
+                                            <div class="col-lg-3">
+                                                <div class="rating-box">
+                                                    <div class="rating-number">5.0</div>
+                                                    <div class="rating">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-star-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-star-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-star-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-star-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-star-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="sub-title">Course Rating</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="review-wrapper">
+                                                    <div class="single-progress-bar">
+                                                        <div class="rating-text">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 63%" aria-valuenow="63" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <span class="value-text">63%</span>
+                                                    </div>
+
+                                                    <div class="single-progress-bar">
+                                                        <div class="rating-text">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 29%" aria-valuenow="29" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <span class="value-text">29%</span>
+                                                    </div>
+
+                                                    <div class="single-progress-bar">
+                                                        <div class="rating-text">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 6%" aria-valuenow="6" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <span class="value-text">6%</span>
+                                                    </div>
+
+                                                    <div class="single-progress-bar">
+                                                        <div class="rating-text">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 1%" aria-valuenow="1" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <span class="value-text">1%</span>
+                                                    </div>
+
+                                                    <div class="single-progress-bar">
+                                                        <div class="rating-text">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 1%" aria-valuenow="1" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <span class="value-text">1%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Edu Review List  -->
+                            </div>
+                            <!-- End Course Details  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+
+        <!-- populate descriptions for material and assignment-->
+        <script>
+            for (let wrapper of document.querySelectorAll('.description')) {
+                wrapper.insertAdjacentHTML('beforeend', wrapper.getAttribute('data-detail'));
+            }
+        </script>
+
+
+        </body>
+
+        </html>

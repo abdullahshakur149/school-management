@@ -1,0 +1,142 @@
+<% layout('layouts/admin/boilerplate') %>
+
+
+
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Students</h3>
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>Student Details</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Student Details Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>About <%=
+                                student.userInfo.fullName.charAt(0).toUpperCase()+student.userInfo.fullName.slice(1) %>
+                        </h3>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-expanded="false">...</a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="<%= `/admin/student/${student._id}/edit` %>"><i
+                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                            <a class="dropdown-item" href="<%= `/admin/student/${student._id}/delete` %>"><i
+                                    class="fas fa-redo-alt text-orange-peel"></i>Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-info-details">
+                    <div class="item-img">
+                        <img src="/img/female-profile.jpg" alt="student">
+                    </div>
+                    <div class="item-content">
+                        <div class="info-table table-responsive">
+                            <table class="table text-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%=
+                                                student.userInfo.fullName.charAt(0).toUpperCase()+student.userInfo.fullName.slice(1)%>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= student.gender.charAt(0).toUpperCase()+student.gender.slice(1) %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Father Name:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= student.fatherName.charAt(0).toUpperCase()+student.fatherName.slice(1)
+                                                %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Of Birth:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= `${student.DOB[0]}/${student.DOB[1]}/${student.DOB[2]}` %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= student.userInfo.email %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Admission Date:</td>
+                                        <td class="font-medium text-dark-medium">07.08.2019</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Class:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= student.grade %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Section:</td>
+                                        <td class="font-medium text-dark-medium">Pink</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Roll:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= student._id %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= `${student.contact.address.streetAddress},
+                                                ${student.contact.address.country}` %>
+                                        </td>
+                                    </tr>
+                                    <% if (student.contact.phoneNo){ %>
+                                        <tr>
+                                            <td>Phone:</td>
+                                            <td class="font-medium text-dark-medium">
+                                                <%= student.contact.phoneNo %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                            <% if (student.education){ %>
+                                                <tr>
+                                                    <td>Previous Education:</td>
+                                                    <td class="font-medium text-dark-medium">
+                                                        <div class="d-flex">
+                                                            <div class="mr-4">
+                                                                <div>Previous Institue Name:</div>
+                                                                <div>Previous Grade: </div>
+                                                            </div>
+                                                            <div>
+                                                                <div>
+                                                                    <%= ` ${student.education.instituteName}` %>
+                                                                </div>
+                                                                <div>
+                                                                    <%= `${student.education.previous_grade}` %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

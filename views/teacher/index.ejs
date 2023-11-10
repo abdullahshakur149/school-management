@@ -1,0 +1,276 @@
+<% layout('layouts/admin/boilerplate') %>
+    <style>
+        td {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+    </style>
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Teacher Dashboard</h3>
+            <ul>
+                <li>
+                    <a href="/teacher">Home</a>
+                </li>
+                <li>Teacher</li>
+            </ul>
+        </div>
+        <%- include('../partials/flash') %>
+
+            <!-- Breadcubs Area End Here -->
+            <div class="row">
+
+
+
+                <!-- Time Table for teacher starts here -->
+                <div class="col-lg-12 p-0 p-sm-2 p-lg-4">
+                    <div class="card dashboard-card-eleven">
+                        <div class="card-body p-0 p-sm-2 p-lg-3 p-lg-4">
+                            <div class="heading-layout1">
+                                <div class="item-title">
+                                    <h3>Time Table</h3>
+                                </div>
+                            </div>
+                            <div class="table-box-wrap">
+                                <div class="table-responsive student-table-box">
+
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr class="">
+                                            </tr>
+                                            <tr>
+                                                <% for(let day of teacher.table[0]){ %>
+                                                    <% if(!(teacher.table[0].indexOf(day)==0)){ %>
+                                                        <td class="p-1 p-sm-2 p-lg-3 bg-dark text-white border">
+                                                            <%= day.charAt(0).toUpperCase()+day.substring(0,3).slice(1)
+                                                                %>
+                                                        </td>
+
+                                                        <%}else{%>
+                                                            <td class="p-1 p-sm-2 p-lg-3 text-white text-left border"
+                                                                style="background-color:rgb(65, 110, 150);">
+                                                                Subject Name
+                                                            </td>
+                                                            <%}%>
+                                                                <%}%>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let i=1; i<teacher.table.length; i++){ %>
+                                                <tr>
+                                                    <% for(let j=0; j<8; j++){ %>
+                                                        <%if (teacher.table[i][j]){%>
+
+                                                            <%if (j==0){%>
+                                                                <td class="p-1 p-sm-2 p-lg-3 text-white text-left border"
+                                                                    style="background-color:rgb(65, 110, 150);">
+                                                                    <%= teacher.table[i][j].charAt(0).toUpperCase()+teacher.table[i][j].slice(1)
+                                                                        %>
+
+                                                                </td>
+                                                                <%}else{%>
+                                                                    <td class="p-1 p-sm-2 p-lg-3 border">
+
+                                                                        <%= teacher.table[i][j].split('_')[0] %> <br>
+                                                                            <small>
+                                                                                <%= teacher.table[i][j].split('_')[1] %>
+                                                                            </small>
+
+
+
+                                                                    </td>
+
+                                                                    <%}%>
+                                                                        <%}else{%>
+                                                                            <td class="p-1 p-sm-2 p-lg-3 border">--
+                                                                            </td>
+                                                                            <%}%>
+                                                                                <%}%>
+
+                                                </tr>
+                                                <%}%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Time Table for teacher ends here -->
+
+
+                <!-- Classes Start here -->
+                <div class="col-12">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="dashboard-summery-two border-bottom m-0">
+                                <h5>Classes</h5>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <% if(teacher.userProfile.assigned_subjects.length){ %>
+                                    <% for(let subject of teacher.userProfile.assigned_subjects){ %>
+                                        <div class="col-6-xxxl col-12 border-bottom mb-3 mb-lg-4">
+                                            <div class="dashboard-summery-two d-flex m-0">
+                                                <div class="d-flex flex-column w-75 w-300 border-right">
+                                                    <h4 class="m-0 text-left">
+                                                        <u>
+                                                            <%= subject.name.charAt(0).toUpperCase()+subject.name.slice(1)
+                                                                %>
+                                                        </u>
+                                                    </h4>
+                                                    <div class="d-flex">
+                                                        <div class="mr-3 w-75 text-left">Class Level:</div>
+                                                        <div>
+                                                            <%= subject.class.classLevel %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div class="mr-3 w-75 text-left">Class Section:</div>
+                                                        <div>
+                                                            <%= subject.class.section %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div class="mr-3 w-75 text-left m-0">Created At:</div>
+                                                        <div>
+                                                            <small>
+                                                                <%= `${subject.class.created.toLocaleString('default', {
+                                                                    month: 'short' })}
+                                                                    ${subject.class.created.getDate()}
+                                                                    ${subject.class.created.getFullYear()}`; %>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class=" w-25">
+                                                    <div class="item-icon bg-light-magenta">
+
+                                                        <div class="item-number"><span class="counter"
+                                                                data-num="<%= subject.class.students.length %>"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <small>Total Students</small>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="dashboard-summery-two col-12 d-flex flex-column m-0 p-2 rounded-0">
+                                                <div class="col-12">
+                                                    <h4 class="text-left">Time Table</h4>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-between p-0">
+                                                    <div class="col-6 d-flex flex-column p-0">
+                                                        <% for(let slot of subject.schedule){ %>
+                                                            <div class="p-1 border">
+                                                                <%=
+                                                                    slot.day.charAt(0).toUpperCase()+slot.day.slice(1,3)%>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                    <div class="col-6 d-flex flex-column  p-0">
+                                                        <% for(let slot of subject.schedule){ %>
+                                                            <div class="p-1 border">
+                                                                <%= slot.slot%>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <a href="<%= `/${currentUser.role}/subject/${subject._id}/view` %>"><u>View
+                                                            More Details</u></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% }else{ %>
+                                                <div class="col-12">
+                                                    <div class="dashboard-summery-two col-12 bg-warning">
+                                                        <h5>
+                                                            You have not been assigned any Subject
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Classes End here -->
+                </div>
+
+
+
+                <!-- Dashboard summery Start Here -->
+                <div class="col-12 col-4-xxxl">
+                    <div class="row">
+                        <div class="col-6-xxxl col-lg-3 col-sm-6 col-12">
+                            <div class="dashboard-summery-two">
+                                <div class="item-icon bg-light-magenta">
+                                    <img src="/svg/student.svg" width="80" alt="">
+                                </div>
+                                <div class="item-content">
+                                    <div class="item-number"><span class="counter"
+                                            data-num="<%= teacher.totalStudents %>"></span>
+                                        </span>
+                                    </div>
+                                    <div class="item-title">Total Students</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dashboard summery End Here -->
+                <!-- Students Chart End Here -->
+                <div class="col-lg-6 col-4-xxxl col-xl-6">
+                    <div class="card dashboard-card-three">
+                        <div class="card-body">
+                            <div class="heading-layout1">
+                                <div class="item-title">
+                                    <h3>Students</h3>
+                                </div>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                        aria-expanded="false">...</a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-times text-orange-red"></i>Close</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doughnut-chart-wrap">
+                                <canvas id="student-doughnut-chart" width="100" height="270"></canvas>
+                            </div>
+                            <div class="student-report">
+                                <div class="student-count pseudo-bg-blue">
+                                    <h4 class="item-title">Female Students</h4>
+                                    <div class="item-number">
+                                        <%= teacher.totalFemaleStudents %>
+                                    </div>
+                                </div>
+                                <div class="student-count pseudo-bg-yellow">
+                                    <h4 class="item-title">Male Students</h4>
+                                    <div class="item-number">
+                                        <%= teacher.totalMaleStudents %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Students Chart End Here -->
+
+
+            </div>
+    </div>

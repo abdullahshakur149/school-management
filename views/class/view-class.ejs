@@ -1,0 +1,345 @@
+<% layout('layouts/admin/boilerplate') %>
+
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Class</h3>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>Class Details</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Student Details Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="single-info-details">
+                    <div class="item-content">
+                        <div class="header-inline item-header">
+
+                            <div class="item-title">
+                                <h3>About Class <%= cls.classLevel %> (<small>Section <%= cls.section %> </small>)
+                                </h3>
+                            </div>
+                            <div class="header-elements">
+                                <ul>
+                                    <li><a href="#"><i class="far fa-edit"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-print"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-table table-responsive">
+                            <table class="table text-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>Class Level:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= cls.classLevel %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Class Section:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= cls.section %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Class ID:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= cls.classID %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= cls.classType.charAt(0).toUpperCase()+ cls.classType.slice(1) %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created At:</td>
+                                        <td class="font-medium text-dark-medium">
+                                            <%= `${cls.created.toLocaleString('default', { month: 'short' })}
+                                                ${cls.created.getDate()} ${cls.created.getFullYear()}`; %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-none d-lg-block">Subjects Offered:</td>
+                                        <td class="font-medium text-dark-medium w-100">
+                                            <% if(cls.classType=='interactive' ){ %>
+
+                                                <% for(let course of cls.courses){ %>
+                                                    <div class="bg-ash p-2 mb-4 border-bottom">
+                                                        <div class="d-flex justify-content-between pr-3">
+                                                            <h4>
+                                                                <%= course.name.charAt(0).toUpperCase()+course.name.slice(1)
+                                                                    %>
+                                                            </h4>
+                                                            <div class="heading-layout1">
+                                                                <div class="dropdown">
+                                                                    <a class="dropdown-toggle" href="#" role="button"
+                                                                        data-toggle="dropdown"
+                                                                        aria-expanded="false">...</a>
+
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <i class="fas fa-times text-orange-red">
+                                                                            </i>
+                                                                            Close
+                                                                        </a>
+                                                                        <a class="dropdown-item"
+                                                                            href="/admin/class/<%= cls._id %>/course/<%= course._id %>/edit">
+                                                                            <i
+                                                                                class="fas fa-cogs text-dark-pastel-green">
+                                                                            </i>
+                                                                            Edit
+                                                                        </a>
+                                                                        <a class="dropdown-item"
+                                                                            href="/admin/class/<%= cls._id %>/course/<%= course._id %>/delete">
+                                                                            <i class="fas fa-redo-alt text-orange-peel">
+                                                                            </i>
+                                                                            Delete
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <% if(course.teacher){ %>
+                                                                <h6>Teacher: <small> <a
+                                                                            href="/admin/teacher/<%= course.teacher._id %>/view">
+                                                                            <%= course.teacher.userInfo.fullName.charAt(0).toUpperCase()+course.teacher.userInfo.fullName.slice(1)
+                                                                                %>
+                                                                        </a>
+                                                                    </small>
+                                                                </h6>
+                                                                <% } %>
+                                                        </div>
+                                                        <div
+                                                            class="dashboard-summery-two col-12 d-flex flex-column m-0 p-2">
+                                                            <div class="col-12">
+                                                                <h4 class="text-left">Time Table</h4>
+                                                            </div>
+                                                            <div class="col-12 d-flex justify-content-between p-0">
+                                                                <div class="col-6 d-flex flex-column p-0">
+                                                                    <div class="p-1 border text-white bg-dark">
+                                                                        Day of Week
+                                                                    </div>
+                                                                    <% for(let slot of course.schedule){ %>
+                                                                        <div class="p-1 border">
+                                                                            <%=
+                                                                                slot.day.charAt(0).toUpperCase()+slot.day.slice(1,3)%>
+                                                                        </div>
+                                                                        <% } %>
+                                                                </div>
+                                                                <div class="col-6 d-flex flex-column  p-0">
+                                                                    <div class="p-1 border text-white bg-dark">
+                                                                        Time at day of week
+                                                                    </div>
+                                                                    <% for(let slot of course.schedule){ %>
+                                                                        <div class="p-1 border">
+                                                                            <%= slot.slot%>
+                                                                        </div>
+                                                                        <% } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <% } %>
+                                                        <% }else{ %>
+                                                            <div class="d-block d-lg-none">
+                                                                Subjects Offered
+                                                            </div>
+                                                            <% for(let course of cls.courses){ %>
+                                                                <div class="bg-ash p-2 mb-4 border-bottom">
+                                                                    <div class="d-flex justify-content-center pr-3">
+                                                                        <h4>
+                                                                            <%= course.name.charAt(0).toUpperCase()+course.name.slice(1)
+                                                                                %>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        <% if(course.teacher){ %>
+                                                                            <h6>Teacher: <small> <a
+                                                                                        href="/admin/teacher/<%= course.teacher._id %>/view">
+                                                                                        <%= course.teacher.userInfo.fullName.charAt(0).toUpperCase()+course.teacher.userInfo.fullName.slice(1)
+                                                                                            %>
+                                                                                    </a>
+                                                                                </small>
+                                                                            </h6>
+                                                                            <% } %>
+                                                                    </div>
+                                                                    <div class="col-12 d-flex justify-content-center">
+                                                                        <a href="/admin/subject/<%= course._id %>/view">
+                                                                            <h6 class=" text-info"><u> View details and
+                                                                                    Add material</u></h6>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <% } %>
+                                                                    <% } %>
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <div class="card height-auto">
+                                            <div class="card-body">
+                                                <% if (cls.students.length){ %>
+                                                    <div class="table-responsive">
+
+                                                        <div id="DataTables_Table_0_wrapper"
+                                                            class="dataTables_wrapper no-footer">
+                                                            <table
+                                                                class="table display data-table text-nowrap dataTable no-footer w-100"
+                                                                id="DataTables_Table_0" role="grid"
+                                                                style="width: 1141px;">
+                                                                <h3 class="border p-3 m-0">
+                                                                    All Students in this Class
+
+                                                                </h3>
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting_asc" rowspan="1" colspan="1"
+                                                                            aria-label="
+                                                                    ID
+                                                                " style="width: 140px;">
+                                                                            ID
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Class Level: activate to sort column ascending"
+                                                                            style="width: 205px;">Name</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Section: activate to sort column ascending"
+                                                                            style="width: 148px;">Gender</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Class Type: activate to sort column ascending"
+                                                                            style="width: 198px;">Address</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Created At: activate to sort column ascending"
+                                                                            style="width: 298px;">Date of birth</th>
+                                                                        <th class="d-none sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Class: activate to sort column ascending"
+                                                                            style="width: 0px;">Date of birth</th>
+                                                                        <th class="d-none sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Date: activate to sort column ascending"
+                                                                            style="width: 0px;">Email</th>
+                                                                        <th class="d-none sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Time: activate to sort column ascending"
+                                                                            style="width: 0px;">Time</th>
+                                                                        <th class="d-none sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="Phone: activate to sort column ascending"
+                                                                            style="width: 0px;">Phone</th>
+                                                                        <th class="d-none sorting" tabindex="0"
+                                                                            aria-controls="DataTables_Table_0"
+                                                                            rowspan="1" colspan="1"
+                                                                            aria-label="E-mail: activate to sort column ascending"
+                                                                            style="width: 0px;">E-mail</th>
+                                                                        <th class="d-none sorting_disabled" rowspan="1"
+                                                                            colspan="1" aria-label=""
+                                                                            style="width: 0px;"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% for (student of cls.students){ %>
+                                                                        <tr role="row" class="odd">
+                                                                            <td class="sorting_1">
+                                                                                <a
+                                                                                    href="<%= `/admin/student/${student._id}/view` %>">
+                                                                                    <%= student._id %>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="">
+                                                                                <%= student.userInfo.fullName %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= student.gender.charAt(0).toUpperCase()+student.gender.slice(1)
+                                                                                    %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= student.contact.address.streetAddress
+                                                                                    %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= `${student.DOB[0]}/${student.DOB[1]}/${student.DOB[2]}`
+                                                                                    %>
+                                                                            </td>
+                                                                            <td class="d-none">A</td>
+                                                                            <td class="d-none">02/05/2001</td>
+                                                                            <td class="d-none">10.00 am - 11.30 am
+                                                                            </td>
+                                                                            <td class="d-none">+ 123 9988568</td>
+                                                                            <td class="d-none">kazifahim93@gmail.com
+                                                                            </td>
+                                                                            <td class="d-none">
+                                                                                <div class="dropdown">
+                                                                                    <a href="#" class="dropdown-toggle"
+                                                                                        data-toggle="dropdown"
+                                                                                        aria-expanded="false">
+                                                                                        <span
+                                                                                            class="flaticon-more-button-of-three-dots"></span>
+                                                                                    </a>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-right">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#"><i
+                                                                                                class="fas fa-times text-orange-red"></i>Close</a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#"><i
+                                                                                                class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#"><i
+                                                                                                class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <% }else{ %>
+                                                        <div class="table-responsive">
+
+
+                                                            <div class="d-flex">
+                                                                <h2 class="text-danger">No Students are enrolled in this
+                                                                    course</h2>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Student Details Area End Here -->
+    </div>

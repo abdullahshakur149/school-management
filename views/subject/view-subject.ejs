@@ -1,0 +1,965 @@
+<% layout('layouts/admin/boilerplate') %>
+    <link rel="stylesheet" type="text/css" href="/plugins/editors/quill/quill.snow.css">
+    <link href="/plugins/noUiSlider/nouislider.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/noUiSlider/custom-nouiSlider.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/loaders/custom-loader.css" rel="stylesheet" type="text/css">
+
+    <div class="dashboard-content-one p-0 p-sm-2 p-lg-3 p-xl-5">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Class</h3>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>Subject Details</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Student Details Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body p-1 p-sm-4">
+                <div class="single-info-details">
+                    <div class="item-content">
+                        <div class="header-inline item-header ">
+                            <div class="card ui-tab-card w-100">
+                                <div class="card-body p-0" style="box-shadow: unset;">
+                                    <div class="heading-layout1 mg-b-25">
+                                        <div class="item-title">
+                                            <h3>
+                                                <u>
+                                                    <%= cls.courses[0].name.charAt(0).toUpperCase()+cls.courses[0].name.slice(1)
+                                                        %>
+                                                </u> Class
+                                            </h3>
+                                        </div>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                                aria-expanded="false">...</a>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i
+                                                        class="fas fa-times text-orange-red"></i>Close</a>
+                                                <a class="dropdown-item" href="#"><i
+                                                        class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i
+                                                        class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="basic-tab">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab"
+                                                    aria-selected="true">About</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="dropdownMat" data-toggle="tab" href="#tab2"
+                                                    role="tab" aria-selected="false">Material and Work</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab3" role="tab"
+                                                    aria-selected="false">Students</a>
+                                            </li>
+                                        </ul>
+
+
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="item-title">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="25">Class Level:</td>
+                                                                <td class="w-75 mr-sm-5 font-medium text-dark-medium">
+                                                                    <%= cls.classLevel %>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="25">Class Section:</td>
+                                                                <td class="w-75 mr-sm-5 font-medium text-dark-medium">
+                                                                    <%= cls.section %>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="25">Class ID:</td>
+                                                                <td class="w-75 mr-sm-5 font-medium text-dark-medium">
+                                                                    <%= cls.classID %>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="25">Created At:</td>
+                                                                <td class="w-75 mr-sm-5 font-medium text-dark-medium">
+                                                                    <%= `${cls.created.toLocaleString('default', {
+                                                                        month: 'short' })} ${cls.created.getDate()}
+                                                                        ${cls.created.getFullYear()}`; %>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="w-100">
+                                                                <td class="d-none d-lg-block">Subject Details:</td>
+                                                                <td class="font-medium text-dark-medium w-100">
+                                                                    <% for(let course of cls.courses){ %>
+                                                                        <div class="bg-ash p-2 mb-1">
+                                                                            <div
+                                                                                class="d-flex justify-content-between pr-3">
+                                                                                <h4>
+                                                                                    <%= course.name.charAt(0).toUpperCase()+course.name.slice(1)
+                                                                                        %>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="d-flex">
+                                                                                <% if(course.teacher){ %>
+                                                                                    <h6>Teacher: <small> <a
+                                                                                                href="/admin/teacher/<%= course.teacher._id %>/view">
+                                                                                                <%= course.teacher.userInfo.fullName.charAt(0).toUpperCase()+course.teacher.userInfo.fullName.slice(1)
+                                                                                                    %>
+                                                                                            </a>
+                                                                                        </small>
+                                                                                    </h6>
+                                                                                    <% } %>
+                                                                            </div>
+                                                                            <div
+                                                                                class="dashboard-summery-two col-12 d-flex flex-column m-0 p-2">
+                                                                                <div class="col-12">
+                                                                                    <h4 class="text-left">Time Table
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-12 d-flex justify-content-between p-0">
+                                                                                    <div
+                                                                                        class="col-6 d-flex flex-column p-0">
+                                                                                        <div
+                                                                                            class="p-1 border text-white bg-dark">
+                                                                                            Day
+                                                                                        </div>
+                                                                                        <% for(let slot of
+                                                                                            course.schedule){ %>
+                                                                                            <div class="p-1 border">
+                                                                                                <%=
+                                                                                                    slot.day.charAt(0).toUpperCase()+slot.day.slice(1,3)%>
+                                                                                            </div>
+                                                                                            <% } %>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="col-6 d-flex flex-column  p-0">
+                                                                                        <div
+                                                                                            class="p-1 border text-white bg-dark">
+                                                                                            Time
+                                                                                        </div>
+                                                                                        <% for(let slot of
+                                                                                            course.schedule){ %>
+                                                                                            <div class="p-1 border">
+                                                                                                <%= slot.slot%>
+                                                                                            </div>
+                                                                                            <% } %>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <% } %>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade p-1 p-lg-5" id="tab2" role="tabpanel">
+                                                <div class="">
+                                                    <div class="dropdown">
+                                                        <a class="col-6 col-sm-6 col-lg-3 col-xl-2 mt-3 btn-fill-md radius-30 text-light bg-light-sea-green d-flex justify-content-between"
+                                                            href="#" role="button" data-toggle="dropdown"
+                                                            aria-expanded="false"><svg viewBox="0 0 24 24" fill="none"
+                                                                width="30" xmlns="http://www.w3.org/2000/svg">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path d="M6 12H18" stroke="#ffffff"
+                                                                        stroke-width="1.5" stroke-linecap="round"
+                                                                        stroke-linejoin="round">
+                                                                    </path>
+                                                                    <path d="M12 18V6" stroke="#ffffff"
+                                                                        stroke-width="1.5" stroke-linecap="round"
+                                                                        stroke-linejoin="round">
+                                                                    </path>
+                                                                </g>
+                                                            </svg> Create</a>
+
+
+                                                        <div class="card ui-tab-card mt-5">
+                                                            <div class="card-body p-0" style="box-shadow: unset;">
+                                                                <div class="custom-tab">
+                                                                    <ul class="nav nav-tabs" role="tablist">
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link active show"
+                                                                                data-toggle="tab" href="#tab4"
+                                                                                role="tab"
+                                                                                aria-selected="true">Materials</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-toggle="tab"
+                                                                                href="#tab5" role="tab"
+                                                                                aria-selected="false">Assignments</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane fade active show border-0 p-0"
+                                                                            id="tab4" role="tabpanel">
+                                                                            <div class="col-12 mt-5 p-0">
+                                                                                <% if (cls.courses[0].material.length){
+                                                                                    %>
+                                                                                    <% for (let material of
+                                                                                        cls.courses[0].material){ %>
+
+                                                                                        <div
+                                                                                            class="dashboard-summery-one mg-b-20 p-3 shadow position-relative">
+                                                                                            <div class="header">
+                                                                                                <h3>
+                                                                                                    <%= material.materialTitle
+                                                                                                        %>
+                                                                                                </h3>
+                                                                                            </div>
+
+                                                                                            <div class="position-absolute"
+                                                                                                style="top: 0; right: 0;">
+                                                                                                <% if(material.createdAt){
+                                                                                                    %>
+                                                                                                    <small>
+                                                                                                        <span
+                                                                                                            class="text-warning">Posted</span>
+                                                                                                        <%= `${material.createdAt.toLocaleString('default',
+                                                                                                            {
+                                                                                                            month: 'short'
+                                                                                                            })}
+                                                                                                            ${material.createdAt.getDate()}
+                                                                                                            ${material.createdAt.getFullYear()}`;
+                                                                                                            %>
+                                                                                                    </small>
+                                                                                                    <% } %>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="details d-flex flex-wrap justify-content-between col-12 pl-4">
+                                                                                                <div class="description col-12"
+                                                                                                    data-detail="<%= material.materialDetail %>">
+                                                                                                </div>
+
+                                                                                                <% if (material.files){
+                                                                                                    %>
+
+                                                                                                    <% for (let file of
+                                                                                                        material.files){
+                                                                                                        %>
+
+                                                                                                        <a target="_blank"
+                                                                                                            href="<%= `/teacher/subject/${cls.courses[0]._id}/material/${material._id}/file/${file.id}/view` %>"
+                                                                                                            class=" row align-items-center col-12 col-xl-6 p-0 mb-3 border">
+                                                                                                            <div
+                                                                                                                class="col-3 p-0">
+                                                                                                                <div class="item-icon bg-light-green m-2"
+                                                                                                                    style="width: 7rem; height: 7rem;">
+                                                                                                                    <% if
+                                                                                                                        (file.filename.split('.')[1]=='docx'
+                                                                                                                        ){
+                                                                                                                        %>
+
+                                                                                                                        <img class=""
+                                                                                                                            src="/svg/docx.svg"
+                                                                                                                            alt="">
+                                                                                                                        <%}else
+                                                                                                                            if
+                                                                                                                            (file.filename.split('.')[1]=='jpg'
+                                                                                                                            ||
+                                                                                                                            file.filename.split('.')[1]=='png'
+                                                                                                                            ){
+                                                                                                                            %>
+                                                                                                                            <img src="/svg/image.svg"
+                                                                                                                                alt="">
+                                                                                                                            <%}else
+                                                                                                                                if
+                                                                                                                                (file.filename.split('.')[1]=='pdf'
+                                                                                                                                ){
+                                                                                                                                %>
+                                                                                                                                <img src="/svg/pdf.svg"
+                                                                                                                                    alt="">
+                                                                                                                                <%}else{
+                                                                                                                                    %>
+                                                                                                                                    <img src="/svg/file.svg"
+                                                                                                                                        alt="">
+                                                                                                                                    <%}%>
+
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="col-9">
+                                                                                                                <div
+                                                                                                                    class="item-content">
+                                                                                                                    <div
+                                                                                                                        class="item-title">
+                                                                                                                        <%= file.filename
+                                                                                                                            %>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </a>
+                                                                                                        <%} %>
+                                                                                                            <%} %>
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <%} %>
+                                                                                            <%}else{ %>
+                                                                                                <h4>No Class Material
+                                                                                                    Uploaded
+                                                                                                </h4>
+                                                                                                <%} %>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="tab-pane fade border-0 p-0"
+                                                                            id="tab5" role="tabpanel">
+                                                                            <div class="col-12 mt-5 p-0">
+                                                                                <% if
+                                                                                    (cls.courses[0].assignment.length){
+                                                                                    %>
+                                                                                    <% for (let assignment of
+                                                                                        cls.courses[0].assignment){ %>
+
+                                                                                        <div
+                                                                                            class="dashboard-summery-one mg-b-20  shadow p-1">
+                                                                                            <div
+                                                                                                class="header position-relative">
+                                                                                                <h3 class="pl-3">
+                                                                                                    <%= assignment.assignmentTitle
+                                                                                                        %>
+                                                                                                </h3>
+                                                                                                <div class="position-absolute"
+                                                                                                    style="top: 0; right: 0;">
+                                                                                                    <% if(assignment.dueDate){
+                                                                                                        %>
+                                                                                                        <small>
+                                                                                                            <span
+                                                                                                                class="text-warning">Due
+                                                                                                                Date</span>
+                                                                                                            <%= `${assignment.dueDate.toLocaleString('default',
+                                                                                                                {
+                                                                                                                month: 'short'
+                                                                                                                })}
+                                                                                                                ${assignment.dueDate.getDate()}
+                                                                                                                ${assignment.dueDate.getFullYear()}`;
+                                                                                                                %>
+                                                                                                        </small>
+                                                                                                        <% } %>
+                                                                                                </div>
+
+
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="details d-flex flex-wrap justify-content-between col-12 pl-4 position-relative">
+                                                                                                <div class="position-absolute"
+                                                                                                    style="bottom: 0; left: 0;">
+
+                                                                                                    <small> Posted
+                                                                                                        <%= `${assignment.createdAt.toLocaleString('default',
+                                                                                                            {
+                                                                                                            month: 'short'
+                                                                                                            })}
+                                                                                                            ${assignment.createdAt.getDate()}
+                                                                                                            ${assignment.createdAt.getFullYear()}`;
+                                                                                                            %>
+                                                                                                    </small>
+
+                                                                                                </div>
+
+                                                                                                <% if(assignment.totalPoints){
+                                                                                                    %>
+                                                                                                    <div class="position-absolute"
+                                                                                                        style="bottom: 0; right: 0;">
+                                                                                                        <small>
+                                                                                                            <em
+                                                                                                                class="text-danger">
+                                                                                                                Graded
+                                                                                                            </em>
+                                                                                                            <small>(<%=
+                                                                                                                    `${assignment.totalPoints}`;
+                                                                                                                    %>
+                                                                                                                    points)
+                                                                                                            </small>
+                                                                                                        </small>
+                                                                                                    </div>
+                                                                                                    <%}%>
+                                                                                                        <div class="description col-12"
+                                                                                                            data-detail="<%= assignment.assignmentDetail %>">
+                                                                                                        </div>
+
+                                                                                                        <% if
+                                                                                                            (assignment.files){
+                                                                                                            %>
+
+                                                                                                            <% for (let
+                                                                                                                file of
+                                                                                                                assignment.files){
+                                                                                                                %>
+
+                                                                                                                <a target="_blank"
+                                                                                                                    href="<%= `/teacher/subject/${cls.courses[0]._id}/assignment/${assignment._id}/file/${file.id}/view` %>"
+                                                                                                                    class="row align-items-center col-12 col-xl-6 p-0 mb-5 border">
+                                                                                                                    <div
+                                                                                                                        class="col-3 p-0">
+                                                                                                                        <div class="item-icon bg-light-green m-2"
+                                                                                                                            style="width: 7rem; height: 7rem;">
+                                                                                                                            <% if
+                                                                                                                                (file.filename.split('.')[1]=='docx'
+                                                                                                                                ){
+                                                                                                                                %>
+
+                                                                                                                                <img class=""
+                                                                                                                                    src="/svg/docx.svg"
+                                                                                                                                    alt="">
+                                                                                                                                <%}else
+                                                                                                                                    if
+                                                                                                                                    (file.filename.split('.')[1]=='jpg'
+                                                                                                                                    ||
+                                                                                                                                    file.filename.split('.')[1]=='png'
+                                                                                                                                    ){
+                                                                                                                                    %>
+                                                                                                                                    <img src="/svg/image.svg"
+                                                                                                                                        alt="">
+                                                                                                                                    <%}else
+                                                                                                                                        if
+                                                                                                                                        (file.filename.split('.')[1]=='pdf'
+                                                                                                                                        ){
+                                                                                                                                        %>
+                                                                                                                                        <img src="/svg/pdf.svg"
+                                                                                                                                            alt="">
+                                                                                                                                        <%}else{
+                                                                                                                                            %>
+                                                                                                                                            <img src="/svg/file.svg"
+                                                                                                                                                alt="">
+                                                                                                                                            <%}%>
+
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div
+                                                                                                                        class="col-9">
+                                                                                                                        <div
+                                                                                                                            class="item-content">
+                                                                                                                            <div
+                                                                                                                                class="item-title">
+                                                                                                                                <%= file.filename
+                                                                                                                                    %>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </a>
+                                                                                                                <%} %>
+                                                                                                                    <%}
+                                                                                                                        %>
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <%} %>
+                                                                                            <%}else{ %>
+                                                                                                <h4>No Class Assignment
+                                                                                                    Uploaded
+                                                                                                </h4>
+                                                                                                <%} %>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right col-6 col-sm-6 col-lg-3 col-xl-2">
+                                                            <button type="button" id="addMaterialBtn"
+                                                                class="dropdown-item" data-toggle="modal"
+                                                                data-target="#add-material" href="#"><svg
+                                                                    viewBox="0 0 24 24" width="20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></g>
+                                                                    <g id="SVGRepo_iconCarrier">
+                                                                        <path
+                                                                            d="M22 16.7402V4.67019C22 3.47019 21.02 2.58019 19.83 2.68019H19.77C17.67 2.86019 14.48 3.93019 12.7 5.05019L12.53 5.16019C12.24 5.34019 11.76 5.34019 11.47 5.16019L11.22 5.01019C9.44 3.90019 6.26 2.84019 4.16 2.67019C2.97 2.57019 2 3.47019 2 4.66019V16.7402C2 17.7002 2.78 18.6002 3.74 18.7202L4.03 18.7602C6.2 19.0502 9.55 20.1502 11.47 21.2002L11.51 21.2202C11.78 21.3702 12.21 21.3702 12.47 21.2202C14.39 20.1602 17.75 19.0502 19.93 18.7602L20.26 18.7202C21.22 18.6002 22 17.7002 22 16.7402Z"
+                                                                            stroke="#292D32" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                        </path>
+                                                                        <path opacity="0.4" d="M12 5.49023V20.4902"
+                                                                            stroke="#292D32" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                        </path>
+                                                                        <path opacity="0.4" d="M7.75 8.49023H5.5"
+                                                                            stroke="#292D32" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                        </path>
+                                                                        <path opacity="0.4" d="M8.5 11.4902H5.5"
+                                                                            stroke="#292D32" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                        </path>
+                                                                    </g>
+                                                                </svg> Material</button>
+                                                            <button type="button" data-toggle="modal"
+                                                                id="addAssignmentBtn" data-target="#add-assignment"
+                                                                class="dropdown-item">
+                                                                <svg viewBox="0 0 48 48" width="20"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></g>
+                                                                    <g id="SVGRepo_iconCarrier">
+                                                                        <title>assignment-check-solid</title>
+                                                                        <g id="Layer_2" data-name="Layer 2">
+                                                                            <g id="invisible_box"
+                                                                                data-name="invisible box">
+                                                                                <path
+                                                                                    d="M0,0V48H48V0ZM32.4,21.4l-10,10a1.9,1.9,0,0,1-2.8,0l-3.9-3.9a2.2,2.2,0,0,1-.4-2.7,2,2,0,0,1,3.1-.2L21,27.2l8.6-8.6a2,2,0,0,1,2.8,2.8Z"
+                                                                                    fill="none"></path>
+                                                                                <path
+                                                                                    d="M0,0V48H48V0ZM32.4,21.4l-10,10a1.9,1.9,0,0,1-2.8,0l-3.9-3.9a2.2,2.2,0,0,1-.4-2.7,2,2,0,0,1,3.1-.2L21,27.2l8.6-8.6a2,2,0,0,1,2.8,2.8Z"
+                                                                                    fill="none"></path>
+                                                                            </g>
+                                                                            <g id="icons_Q2" data-name="icons Q2">
+                                                                                <path
+                                                                                    d="M40,6H36V4a2,2,0,0,0-2-2H14a2,2,0,0,0-2,2V6H8A2,2,0,0,0,6,8V44a2,2,0,0,0,2,2H40a2,2,0,0,0,2-2V8A2,2,0,0,0,40,6ZM32.4,21.4l-10,10a1.9,1.9,0,0,1-2.8,0l-3.9-3.9a2.2,2.2,0,0,1-.4-2.7,2,2,0,0,1,3.1-.2L21,27.2l8.6-8.6a2,2,0,0,1,2.8,2.8Z">
+                                                                                </path>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </svg> Assignment
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="tab-pane fade p-0 p-lg-3" id="tab3" role="tabpanel">
+                                                <div class="card height-auto">
+                                                    <div class="card-body p-0 " style="box-shadow: unset;">
+                                                        <% if (cls.students.length){ %>
+                                                            <div class="table-responsive">
+
+                                                                <div id="DataTables_Table_0_wrapper"
+                                                                    class="dataTables_wrapper no-footer">
+                                                                    <table
+                                                                        class="table display data-table text-nowrap dataTable no-footer w-100"
+                                                                        id="DataTables_Table_0" role="grid"
+                                                                        style="width: 1141px;">
+                                                                        <h3 class="border p-3 m-0">
+                                                                            All Students in this Class
+
+                                                                        </h3>
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th class="sorting_asc" rowspan="1"
+                                                                                    colspan="1" aria-label="
+                                                            ID
+                                                        " style="width: 140px;">
+                                                                                    ID
+                                                                                </th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Class Level: activate to sort column ascending"
+                                                                                    style="width: 205px;">Name</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Section: activate to sort column ascending"
+                                                                                    style="width: 148px;">Gender</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Class Type: activate to sort column ascending"
+                                                                                    style="width: 198px;">Address</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Created At: activate to sort column ascending"
+                                                                                    style="width: 298px;">Date of birth
+                                                                                </th>
+                                                                                <th class="d-none sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Class: activate to sort column ascending"
+                                                                                    style="width: 0px;">Date of birth
+                                                                                </th>
+                                                                                <th class="d-none sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Date: activate to sort column ascending"
+                                                                                    style="width: 0px;">Email</th>
+                                                                                <th class="d-none sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Time: activate to sort column ascending"
+                                                                                    style="width: 0px;">Time</th>
+                                                                                <th class="d-none sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="Phone: activate to sort column ascending"
+                                                                                    style="width: 0px;">Phone</th>
+                                                                                <th class="d-none sorting" tabindex="0"
+                                                                                    aria-controls="DataTables_Table_0"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="E-mail: activate to sort column ascending"
+                                                                                    style="width: 0px;">E-mail</th>
+                                                                                <th class="d-none sorting_disabled"
+                                                                                    rowspan="1" colspan="1"
+                                                                                    aria-label="" style="width: 0px;">
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <% for (student of cls.students){ %>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="sorting_1">
+                                                                                        <a
+                                                                                            href="<%= `/admin/student/${student._id}/view` %>">
+                                                                                            <%= student._id %>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td class="">
+                                                                                        <%= student.userInfo.fullName %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= student.gender.charAt(0).toUpperCase()+student.gender.slice(1)
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= student.contact.address.streetAddress
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= `${student.DOB[0]}/${student.DOB[1]}/${student.DOB[2]}`
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td class="d-none">A</td>
+                                                                                    <td class="d-none">02/05/2001</td>
+                                                                                    <td class="d-none">10.00 am - 11.30
+                                                                                        am
+                                                                                    </td>
+                                                                                    <td class="d-none">+ 123 9988568
+                                                                                    </td>
+                                                                                    <td class="d-none">
+                                                                                        kazifahim93@gmail.com
+                                                                                    </td>
+                                                                                    <td class="d-none">
+                                                                                        <div class="dropdown">
+                                                                                            <a href="#"
+                                                                                                class="dropdown-toggle"
+                                                                                                data-toggle="dropdown"
+                                                                                                aria-expanded="false">
+                                                                                                <span
+                                                                                                    class="flaticon-more-button-of-three-dots"></span>
+                                                                                            </a>
+                                                                                            <div
+                                                                                                class="dropdown-menu dropdown-menu-right">
+                                                                                                <a class="dropdown-item"
+                                                                                                    href="#"><i
+                                                                                                        class="fas fa-times text-orange-red"></i>Close</a>
+                                                                                                <a class="dropdown-item"
+                                                                                                    href="#"><i
+                                                                                                        class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                                                                <a class="dropdown-item"
+                                                                                                    href="#"><i
+                                                                                                        class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <% } %>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <% }else{ %>
+                                                                <div class="d-flex">
+                                                                    <h2 class="text-danger">No Students are enrolled in
+                                                                        this
+                                                                        course</h2>
+                                                                </div>
+                                                                <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="info-table table-responsive">
+
+
+                            <tr>
+                            </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-box">
+                <!-- Add Material Modal -->
+                <div class="modal fade" id="add-material" tabindex="-1" role="dialog" style="display: none;"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div id="tooltip" class="row layout-spacing">
+                                <div class="col-lg-12">
+                                    <div class="statbox widget box box-shadow p-5">
+                                        <div class="widget-header">
+                                            <div class="row position-relative">
+                                                <div class=" pl-5">
+                                                    <h4> Add Material </h4>
+                                                </div>
+                                                <button class="btn btn-hover-yellow col-2 position-absolute"
+                                                    style="background-color: unset !important; top:0; right:0;"
+                                                    id="closeBtnMat">x</button>
+                                            </div>
+                                        </div>
+                                        <form id="materialForm" method="post" enctype="multipart/form-data"
+                                            action="<%= `/teacher/subject/${cls.courses[0]._id}/material/add` %>"
+                                            class="widget-content widget-content-area">
+                                            <div id="content-container">
+
+                                                <div class="form-group mb-5 btn-outline-info">
+                                                    <label for="materialTitle" id="materialTitle">Enter Title</label>
+                                                    <input required type="text" name="materialTitle" id="materialTitle"
+                                                        class="form-control form-control-plaintext btn-outline-success border-bottom-gradient">
+                                                </div>
+                                                <div class="">
+
+                                                    <label for="materialDetail">Enter
+                                                        Description(<small>Optional</small>)</label>
+                                                    <div id="quill-tooltip" class="mt-0">
+                                                    </div>
+                                                </div>
+
+                                                <textarea name="materialDetail" id="materialDetail" class="d-none"
+                                                    cols="30" rows="10"></textarea>
+
+                                                <div class="mt-4">
+                                                    <label for="file-upload">Choose files to upload:</label>
+                                                    <input name="files" id="file-upload" type="file" multiple>
+                                                </div>
+                                                <div id="preview"></div>
+                                            </div>
+
+                                            <input type="text" name="teacher" class="d-none" name="teacher"
+                                                value="<%= cls.courses[0].teacher._id %>" id="">
+                                            <hr>
+
+                                            <div class="d-flex justify-content-end mt-5 mb-3">
+                                                <button type="submit"
+                                                    class="submitData btn-fill-lg font-normal text-light gradient-orange-peel">Add
+                                                    Material</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Assignment Modal -->
+                <div class="modal fade" id="add-assignment" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog col-12" role="document" style="">
+                        <div class="modal-content">
+                            <div id="basic" class="row layout-spacing">
+                                <div class="col-lg-12">
+                                    <div class="statbox widget box box-shadow p-0 p-sm-2 p-lg-5">
+                                        <div class="widget-header">
+                                            <div class="row position-relative">
+                                                <div class=" pl-5">
+                                                    <h4> Add Assignment </h4>
+                                                </div>
+                                                <button class="btn btn-hover-yellow col-2 position-absolute"
+                                                    style="background-color: unset !important; top:0; right:0;"
+                                                    id="closeBtn">x</button>
+                                            </div>
+                                        </div>
+                                        <form id="assignmentForm" method="post" enctype="multipart/form-data"
+                                            action="<%= `/teacher/subject/${cls.courses[0]._id}/assignment/add` %>"
+                                            class="widget-content widget-content-area col-12 d-flex flex-wrap p-0 p-sm-2">
+                                            <div id="" class="col-12 mb-5">
+
+                                                <div class="form-group mb-5">
+                                                    <label for="assigmnetTitle" id="assigmnetTitle">Enter Title</label>
+                                                    <input required type="text" name="assignmentTitle"
+                                                        id="assigmnetTitle"
+                                                        class="form-control form-control-plaintext btn-outline-success border-bottom-gradient">
+                                                </div>
+                                                <div class="">
+
+                                                    <label for="assignmentDetail">Enter
+                                                        Description(<small>Optional</small>)</label>
+                                                    <div id="editor-container" class="mt-0">
+                                                    </div>
+                                                </div>
+
+                                                <textarea name="assignmentDetail" id="assignmentDetail" class="d-none"
+                                                    cols="30" rows="10"></textarea>
+
+                                                <div class="mt-4">
+                                                    <label for="file-upload">Choose files to upload:</label>
+                                                    <input name="files" id="file-upload" type="file" multiple>
+                                                </div>
+                                                <div id="preview"></div>
+                                                <input type="text" name="teacher" class="d-none" name="teacher"
+                                                    value="<%= cls.courses[0].teacher._id %>" id="">
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="card dashboard-card-thirteen">
+                                                    <div class="widget-content widget-content-area">
+                                                        <div class="input-group mb-4">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text pb-0">
+                                                                    <div class="n-chk align-self-end">
+                                                                        <label class="new-control new-radio radio-info"
+                                                                            style="height: 21px; margin-bottom: 0; margin-right: 0">
+                                                                            <input type="radio" id="ungraded-radio"
+                                                                                class="new-control-input"
+                                                                                name="assignmentType" value="ungraded"
+                                                                                checked>
+                                                                            <span class="">Ungraded</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-4">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text pb-0">
+                                                                    <div class="n-chk align-self-end">
+                                                                        <label class="new-control new-radio radio-info"
+                                                                            style="height: 21px; margin-bottom: 0; margin-right: 0">
+                                                                            <input type="radio" id="graded-radio"
+                                                                                class="new-control-input"
+                                                                                name="assignmentType" value="graded"
+                                                                                value="">
+                                                                            <span class="">Graded</span>
+
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <input type="number" readonly class="form-control"
+                                                                name="totalPoints" id="grade-points" placeholder="100"
+                                                                aria-label="grade-points">
+                                                        </div>
+
+                                                    </div>
+                                                    <input name="dueDate"
+                                                        class="form-control flatpickr flatpickr-input active flatpickr-mobile"
+                                                        step="any" tabindex="1" type="date" placeholder="Due date">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="d-flex justify-content-end mt-5 col-12 mb-3">
+                                                <button type="submit"
+                                                    class="submitData btn-fill-lg font-normal text-light gradient-orange-peel">Add
+                                                    Assignment</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('dropdownMat').click();
+            // document.getElementById('addAssignmentBtn').click();
+        }, 500);
+
+
+
+        document.getElementById('materialForm').addEventListener('submit', function (evt) {
+            document.getElementById('materialDetail').value = quill.root.innerHTML;
+            showLoadingBtn(this)
+
+        })
+
+        document.getElementById('assignmentForm').addEventListener('submit', function (evt) {
+            document.getElementById('assignmentDetail').value = new Quill('#editor-container').root.innerHTML;
+            showLoadingBtn(this)
+
+        })
+        function getFormData(form) {
+            var formData = new FormData(form);
+            for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+        }
+
+        function showLoadingBtn(self) {
+            let loadingBtn = '<div class="spinner-border text-success  align-self-center loader-lg">Loading...</div>'
+            self.querySelector('.submitData').parentElement.insertAdjacentHTML('beforeend', loadingBtn);
+            self.querySelector('.submitData').remove();
+        }
+
+        // When graded radio is choosen put 100 value to input of grade-points
+        document.getElementById('graded-radio').addEventListener('change', function (evt) {
+            console.log('added 100');
+            document.getElementById('grade-points').value = '100';
+        })
+        document.getElementById('ungraded-radio').addEventListener('click', function (evt) {
+            document.getElementById('grade-points').value = '';
+        })
+
+        document.getElementById('closeBtn').addEventListener('click', function (evt) {
+            document.getElementById('add-assignment').click();
+        })
+        document.getElementById('closeBtnMat').addEventListener('click', function (evt) {
+            document.getElementById('add-material').click();
+        })
+
+
+    </script>
+
+    <!-- populate descriptions for material and assignment-->
+    <script>
+        for (let wrapper of document.querySelectorAll('.description')) {
+            wrapper.insertAdjacentHTML('beforeend', wrapper.getAttribute('data-detail'));
+        }
+    </script>
+
+    <script src="/plugins/editors/quill/quill.js"></script>
+    <script src="/plugins/editors/quill/custom-quill.js"></script>
+
+    <script src="/plugins/flatpickr/flatpickr.js"></script>
+    <script src="/plugins/flatpickr/custom-flatpickr.js"></script>

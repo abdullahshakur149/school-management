@@ -1,0 +1,552 @@
+<!-- Select 2 CSS -->
+<link rel="stylesheet" href="/css/select2.min.css">
+<!-- Date Picker CSS -->
+<link rel="stylesheet" href="/css/datepicker.min.css">
+<% layout('layouts/admin/boilerplate') %>
+
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Grades</h3>
+            <ul>
+                <li>
+                    <a href="/admin">Home</a>
+                </li>
+                <li>Add New Class</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Add Class Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body">
+                <!-- Select Class Type Modal -->
+                <div class="modal fade" id="grade-type" tabindex="-1" role="dialog" aria-hidden="true"
+                    style="display: none;">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <%- include('../partials/flash') %>
+                                    <div class="col-12 d-flex flex-wrap justify-content-center">
+                                        <div class="col-12 col-md-6 border-right">
+                                            <div>
+                                                <h4>
+                                                    Self-guided Class
+                                                </h4>
+                                                <p>
+                                                    This class has courses but
+                                                    no online classes or interaction with teacher. This means that
+                                                    students
+                                                    will only have access to
+                                                    course materials such as readings, and videos. Students can work
+                                                    through the course materials at their own pace.
+                                                </p>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <button type="button"
+                                                    class=" btn-fill-xl radius-30 text-light shadow-violet-blue bg-violet-blue"
+                                                    id="staticClassBtn">Create Static Class</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div>
+                                                <h4>
+                                                    Interactive Class
+                                                </h4>
+                                                <p>
+                                                    This class has online
+                                                    courses where students can interact with the teacher. This means
+                                                    that
+                                                    there will be scheduled live online classes where the teacher will
+                                                    teach
+                                                    and students can ask questions and participate in discussions.
+                                                    Students
+                                                    will also have access to course materials and assignments online,
+                                                    but
+                                                    there will be additional opportunities for interaction with the
+                                                    teacher
+                                                    during the live classes.
+                                                </p>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <button type="button"
+                                                    class="btn-fill-lmd radius-30 text-light shadow-true-v bg-true-v"
+                                                    id="interactiveClassBtn">Create Interactive Class</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer d-none">
+                                <button id="closeModal" type="button" class="footer-btn bg-dark-low"
+                                    data-dismiss="modal">Close</button>
+                                <button type="button" class="footer-btn bg-linkedin"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="modal-trigger" data-toggle="modal" data-target="#grade-type">
+                    Select Class Type
+                </button>
+
+                <!-- interactive class form -->
+                <form method="post" action="/admin/add-class" class="new-added-form d-none" id="interactiveClass">
+                    <div>
+                        <input type="text" name="classType" value="interactive" id="" class="d-none">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Class Level</label>
+                                <select required class="select2" name="classLevel" id="classLevel">
+                                    <option value="">--Select Class Level--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Section</label>
+                                <select required class="select2" name="section">
+                                    <option value="">--Please Select--</option>
+                                    <option value="Pink">Pink</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="Bird">Bird</option>
+                                    <option value="Rose">Rose</option>
+                                    <option value="Red">Red</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Class ID No</label>
+                                <input type="number" name="classID" placeholder="Class Id" class="form-control">
+                            </div>
+                            <div class="col-12 p-2 form-group d-none" style="background-color: beige;"
+                                id="relatedStudents">
+
+                                <div class="table-responsive">
+                                    <label>Add Students( <small>The following students have applied for class <span
+                                                id="selectedLabel"></span></small>
+                                        )</label>
+                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                                        <table class="table display data-table text-nowrap dataTable no-footer"
+                                            id="DataTables_Table_0" role="grid">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" rowspan="1" colspan="1" aria-label="
+                                                    
+                                                        
+                                                        Roll
+                                                    
+                                                " style="width: 85.8px;">
+                                                        <div class="">
+                                                            <label class="">Roll</label>
+                                                        </div>
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Name: activate to sort column ascending"
+                                                        style="width: 80.6875px;">Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Gender: activate to sort column ascending"
+                                                        style="width: 51.625px;">Gender</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Class: activate to sort column ascending"
+                                                        style="width: 39.7125px;">Applied for Class</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Address: activate to sort column ascending"
+                                                        style="width: 133.8px;">Address</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Date Of Birth: activate to sort column ascending"
+                                                        style="width: 92.1125px;">Date Of Birth</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="E-mail: activate to sort column ascending"
+                                                        style="width: 166.075px;">E-mail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="studentsTable">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="courseWrapper" class="bg-dark mb-5 col-12">
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+
+                            <button type="button" id="addSubject"
+                                class="btn-fill-lg bg-blue-dark btn-hover-bluedark">Add
+                                Subject</button>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="col-12 form-group mg-t-8 d-flex justify-content-end">
+                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Add
+                                Class</button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+
+                <!-- statc Class form -->
+                <form method="post" action="/admin/add-class" class="new-added-form d-none" id="staticClass">
+                    <input type="text" name="classType" value="static" id="" class="d-none">
+                    <div class="row border-bottom">
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Class</label>
+                            <select class="select2" name="classLevel">
+                                <option value="" selected>--Select Class--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Section *</label>
+                            <select class="select2" name="section">
+                                <option value="">Please Select *</option>
+                                <option value="Pink">Pink</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Bird">Bird</option>
+                                <option value="Rose">Rose</option>
+                                <option value="Red">Red</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>ID No</label>
+                            <input type="text" placeholder="" name="classID" class="form-control">
+                        </div>
+                        <!-- Container for holding select subject elements -->
+                        <div class="col-12" id="allStaticSubjects">
+                        </div>
+                        <div class="col-12 form-group mt-5">
+                            <button type="button" class="btn-fill-lg bg-blue-dark btn-hover-yellow"
+                                id="addStaticSubject">Add Subject</button>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class="col-12 form-group mg-t-8 d-flex justify-content-end">
+                        <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                    </div>
+                </form>
+
+
+
+                <div class="col-12 form-group subject-names d-none">
+                    <label class="">Subjects *</label>
+                    <select class="">
+                        <option value="">--Select Subject--</option>
+                        <option value="english">English</option>
+                        <option value="mathematics">Mathmethics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemestry</option>
+                        <option value="history">History</option>
+                        <option value="art">Art</option>
+                        <option value="music">Music</option>
+                        <option value="pushto">Pushto</option>
+                        <option value="biology">Biology</option>
+                        <option value="social studies">Social Studies</option>
+                        <option value="religious education">Religious Education</option>
+                        <option value="foreign language">Foreign Language</option>
+                        <option value="computer science">Computer Science</option>
+                        <option value="business studies">Business Studies</option>
+                        <option value="skill education">Skills Education</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Remove Choose class type btn when class is choosen -->
+    <script>
+        document.getElementById('staticClassBtn').addEventListener('click', (evt) => {
+            document.querySelector('.modal-trigger').remove();
+        })
+        document.getElementById('interactiveClassBtn').addEventListener('click', (evt) => {
+            document.querySelector('.modal-trigger').remove();
+        })
+    </script>
+
+    <!-- Render selection -->
+    <script>
+        // for interactive
+        document.getElementById('interactiveClassBtn').addEventListener('click', function (evt) {
+            document.getElementById('staticClass').remove();
+            document.getElementById('closeModal').click();
+            document.getElementById('interactiveClass').classList.remove('d-none');
+        })
+        // for static
+        document.getElementById('staticClassBtn').addEventListener('click', function (evt) {
+            document.getElementById('interactiveClass').remove();
+            document.getElementById('closeModal').click();
+            document.getElementById('staticClass').classList.remove('d-none');
+        })
+    </script>
+
+    <script>
+        let courseCount = 0;
+        document.getElementById('addSubject').addEventListener('click', async function (evt) {
+            // const selectSlot = 
+
+
+            let selectDay = '<div class="col-12 flex-wrap" style="background-color: aliceblue;" id="select-day-wrap' + (++courseCount) + '"> <h6 class="col-12 pt-3 m-0 border-bottom">Select Day(<small>This class will be conducted on this day</small>):</h6>     <div class="d-flex flex-column justify-content-between col-12">    <div id="monday' + courseCount + '"><div class="n-chk p-2"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="monday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Monday</span> </label> </div>' + '</div>       <div id="tuesday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="tuesday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Tuesday</span> </label> </div> </div> <div id="wednesday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="wednesday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Wednesday</span> </label> </div></div> <div id="thursday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="thursday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Thursday</span> </label> </div></div> <div id="friday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="friday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Friday</span> </label> </div></div> <div id="saturday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="saturday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Saturday</span> </label> </div></div> <div id="sunday' + courseCount + '"><div class="n-chk p-2 "> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="checkbox" name="" onchange="populateSlots(this,' + courseCount + ')" class="new-control-input" value="sunday"> <span class="new-control-indicator"></span> <span class="new-chk-content">Sunday</span> </label> </div>     </div> </div>';
+
+
+
+
+
+            document.getElementById('courseWrapper').insertAdjacentHTML('beforeend',
+                '<div class="course border shadow mb-5 bg-ash"> <div class="col-12 d-flex flex-wrap mb-5"> <div class="col-12 col-lg-4"> <div class="w-100 form-group"> <label class="h3 p-4"> <u class="subjectTitle' + (courseCount) + '"> Subject#: ' + (courseCount) + ' </u></label> <select class="coursesSelect' + (courseCount) + '" onchange="getTeacher(this, ' + courseCount + ')" name="subjects[subject' + courseCount + '][name]"> <option value="">--Please Select Subject name--</option> <option value="math">Math</option> <option value="english">English</option> <option value="history">History</option> <option value="science">Science</option> <option value="art">Art</option> <option value="music">Music</option> <option value="pushto">Pushto</option> <option value="dari">Dari</option> <option value="biology">Biology</option> <option value="physics">Physics</option> <option value="social Studies">Social Studies</option> <option value="religious Education">Religious Education </option> <option value="business Studies">Business Studies</option> <option value="computer Science">Computer Science</option> <option value="skills Education">Skills Education</option> <option value="foreign Language">Foreign Language</option> </select> </div> </div> </div>' + selectDay + '<div class="col-12 p-2 form-group d-none" style="background-color: beige;" id="relatedTeachers' + (courseCount) + '"> <div class="table-responsive"> <label>Add Teacher( <small>The following Teachers are elligible and available for "<span id="selectedLabelTeacher' + courseCount + '"></span>" class <span id="timeLabelWrap' + courseCount + '" class="d-none"> at "<span id="timeSlot' + courseCount + '"></span>"</span> <span id="dayLabelWrap' + courseCount + '" class="d-none">on "<span id="daySlot' + courseCount + '"></span>"</span> </small> )</label> <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer"> <table class="table display data-table text-nowrap dataTable no-footer" id="DataTables_Table_0" role="grid"> <thead> <tr role="row"> <th class="sorting_asc" rowspan="1" colspan="1" aria-label="id" style="width: 85.8px;"> <div class=""> <label class="">ID</label> </div> </th> <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 80.6875px;">Name</th> <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column ascending" style="width: 51.625px;">Gender</th> <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 133.8px;">Address</th> <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="E-mail: activate to sort column ascending" style="width: 166.075px;">E-mail</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="qualification: activate to sort column ascending" style="width: 133.8px;">Qualification</th> </tr> </thead> <tbody id="teachersTable' + courseCount + '"> </tbody> </table> </div> </div> </div> </div>')
+        })
+    </script>
+    <!-- Check for students of particular class level -->
+    <script>
+        setTimeout(() => {
+
+            document.getElementById('classLevel').onchange = async function (evt) {
+                document.getElementById('selectedLabel').innerHTML = this.value;
+                // clear students table
+                let tbody = document.getElementById('studentsTable');
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                // look for students of the selected grade
+                try {
+                    let res = await fetch('/admin/get-student/with-grade/' + this.value);
+                    res = await res.json();
+                    document.getElementById('relatedStudents').classList.remove('d-none');
+                    if (res.length) {
+                        for (let student of res) {
+                            tbody.innerHTML += '<tr role="row" class="odd"> <td class="sorting_1 p-0 pl-4"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary d-flex align-items-center m-0"> <input type="checkbox" name="students[id]" class="new-control-input" value="' + student._id + '"> <span class="new-control-indicator"></span> <span class="new-chk-content">#' + student._id + '</span> </label> </td> <td> <td> <a href="/admin/student/' + student._id + '/view">' + student.userInfo.fullName + '</a></td> <td>' + student.gender + '</td> <td>' + student.grade + '</td> <td>' + student.contact.address.streetAddress + '</td> <td>' + student.DOB[0] + '/' + student.DOB[1] + '/' + student.DOB[2] + '</td> <td>' + student.userInfo.email + '</td> </tr>'
+                        }
+                    } else {
+                        // document.getElementById('relatedStudents').classList.add('d-none');
+                        while (tbody.firstChild) {
+                            tbody.removeChild(tbody.firstChild);
+                        }
+                        tbody.innerHTML = '<h3 class="text-danger p-3 text center">No Students have applied for the selected class</h3>'
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+
+        }, 100);
+    </script>
+
+    <!-- Check for Teachers of particular subject -->
+    <script>
+        async function populateSlots(self, subNo) {
+            if (self.checked) {
+                document.getElementById(self.value + subNo).insertAdjacentHTML('beforeend', '<div class="row pl-5 justify-content-between form-group ml-1 border-bottom shadow" id="slot-wrapper' + (courseCount) + '" style="background-color:aliceblue;"> <h6 class="border-bottom">Select Time Slot for <span class="text-primary p-0 m-0 h2" id="day-name' + self.value + '">' + self.value.charAt(0).toUpperCase() + self.value.slice(1) + '</span>:</h6> <div class="col-12 d-flex flex-wrap"> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="08:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">08:15 am</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="09:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">09:15 am</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="10:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">10:15 am</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="11:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">11:15 am</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="12:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">12:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="13:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">01:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="14:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">02:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="15:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">03:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="16:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">04:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="17:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">05:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="18:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">06:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="19:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">07:15 pm</span> </label> </div> <div class="n-chk col-2 mb-4 p-1"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary"> <input type="radio" onchange="lookForConflict(this,' + courseCount + ')" name="subjects[subject' + courseCount + '][schedule][' + self.value + '][slot]" class="new-control-input" value="20:15"> <span class="new-control-indicator"></span> <span class="new-chk-content">08:15 pm</span> </label> </div> </div> </div>');
+            } else {
+                // Remove check boxes
+                document.getElementById(self.value + subNo).children[1].remove();
+            }
+        }
+
+
+
+        function createTeacherTable(teachers, wrapper, subNo) {
+            document.getElementById('relatedTeachers' + subNo).classList.remove('d-none');
+            if (teachers.length) {
+                // create qualifications
+                for (let teacher of teachers) {
+                    let quals = '';
+                    for (let qual of teacher.qualifications) {
+                        quals += '<div>' + qual.name + '</div>';
+                    }
+                    wrapper.insertAdjacentHTML('beforeend', '<tr role="row" class="odd"> <td class="sorting_1 p-0 pl-4"> <label class="new-control new-checkbox new-checkbox-text checkbox-primary d-flex align-items-center m-0"> <input type="radio" name="subjects[subject' + subNo + '][teacher]" class="new- control - input" value="' + teacher._id + '"> <span class="new- control - indicator"></span> <span class="new- chk - content">#' + teacher._id + '</span> </label> </td> <td> <a href="/admin/teacher/' + teacher._id + '/view">' + teacher.fullName + '</a></td> <td>' + teacher.gender + '</td> <td>' + teacher.address + '</td> <td>' + teacher.email + '</td> <td><small>' + quals + '</div></small></td> </tr>')
+                }
+            } else {
+                wrapper.innerHTML = '';
+                wrapper.insertAdjacentHTML('beforeend', '<h4 class="text-danger text-center">No Teacher with the selected subject found</h4>');
+                console.log('no teacher with the selected subject found');
+            }
+        }
+
+
+        async function getTeacherByCourse(subNo) {
+            document.getElementById('select-day-wrap' + subNo).classList.remove('d-none');
+            // document.getElementById('select-day-wrap' + subNo).classList.add('d-flex');
+            // clear teachers table
+            let tbody = document.getElementById('teachersTable' + subNo);
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            // look for teachers of the selected grade
+            try {
+                let res = await fetch('/admin/get-teacher?subject=' + document.querySelector('.coursesSelect' + subNo).value);
+                res = await res.json();
+                console.log(res);
+                createTeacherTable(res, tbody, subNo);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        function getTeacher(self, subNo) {
+            if (document.getElementById('selectedLabelTeacher' + subNo)) {
+
+                document.getElementById('selectedLabelTeacher' + subNo).innerHTML = self.value.charAt(0).toUpperCase() + self.value.slice(1);
+                // document.getElementById('timeLabelWrap' + subNo).classList.add('d-none');
+
+                // document.getElementById('select-day-wrap' + subNo).classList.remove('d-none');
+                // document.getElementById('select-day-wrap' + subNo).classList.add('d-flex');
+            }
+            if (self.value) {
+                getTeacherByCourse(subNo);
+            }
+        }
+
+        async function getTeacherByCourseAndDay(self, subNo) {
+            document.getElementById('slot-wrapper' + subNo).classList.remove('d-none');
+            document.getElementById('selectedLabelTeacher' + subNo).innerHTML = document.querySelector('.coursesSelect' + subNo).value;
+            document.getElementById('daySlot' + subNo).innerHTML = self.value
+            document.getElementById('dayLabelWrap' + subNo).classList.remove('d-none');
+            document.getElementById('day-name' + subNo).innerHTML = self.value.charAt(0).toUpperCase() + self.value.slice(1);
+            if (document.querySelector('input[name="subjects[subject' + subNo + '][slot]"]:checked') && document.querySelector('.coursesSelect' + subNo).value && self.value) {
+                getTeacherByCourseDayAndSlot(self, subNo);
+            }
+
+        }
+
+
+        async function getTeacherByCourseAndSlot(subNo) {
+            if (document.querySelector('.coursesSelect' + subNo).value && document.querySelector('input[name="subjects[subject' + subNo + '][slot]"]:checked').value != '') {
+                document.getElementById('selectedLabelTeacher' + subNo).innerHTML = document.querySelector('.coursesSelect' + subNo).value;
+                document.getElementById('timeSlot' + subNo).innerHTML = document.querySelector('input[name="subjects[subject' + subNo + '][slot]"]:checked').value
+                document.getElementById('timeLabelWrap' + subNo).classList.remove('d-none');
+
+                // clear teachers table
+                let tbody = document.getElementById('teachersTable' + subNo);
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                // look for teachers of the selected slot and subject
+                try {
+                    let res = await fetch('/admin/get-teacher?subject=' + document.querySelector('.coursesSelect' + subNo).value + '&slot=' + document.querySelector('input[name="subjects[subject' + subNo + '][slot]"]:checked').value);
+                    res = await res.json();
+                    createTeacherTable(res, tbody, subNo);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+
+        }
+
+
+    </script>
+
+    <!-- Check for Teachers of particular subject and slot -->
+    <script>
+
+        async function lookForConflict(self, subNo) {
+            // console.log(document.getElementById('selectedLabelTeacher' + subNo))
+            let parentNode = self.parentElement;
+            let days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+            while (!parentNode.id || !days.includes(parentNode.id.replace(/\d+$/, ""))) {
+                parentNode = parentNode.parentElement;
+            }
+
+            if (document.querySelector('.coursesSelect' + subNo).value && self.value && days.includes(parentNode.id.replace(/\d+$/, ""))) {
+                // look for teachers of the selected slot,subject and day
+                try {
+                    let res = await fetch('/admin/get-teacher?subject=' + document.querySelector('.coursesSelect' + subNo).value + '&day=' + parentNode.id.replace(/\d+$/, "") + '&slot=' + self.value);
+                    res = await res.json();
+                    let tbody = document.getElementById('teachersTable' + subNo);
+                    if (res.length) {
+                        for (let occupiedTeacher of res) {
+                            // Find the teacher an disable it
+                            if (tbody.querySelector('input[type="radio"][value="' + res[0] + '"]')) {
+                                let findRow = tbody.querySelector('input[type="radio"][value="' + res[0] + '"]').parentElement;
+                                while (findRow.role != 'row') {
+                                    findRow = findRow.parentElement;
+                                }
+                                findRow.remove();
+                            }
+                        }
+                    }
+                    // console.log(tbody)
+                    // createTeacherTable(res, tbody, subNo);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            else {
+                console.log('subject not selected')
+            }
+        }
+
+
+
+
+    </script>
+
+
+    <!-- Static class related -->
+    <script>
+        let totlStaticSubjects = 0;
+        // document.getElementById('staticClassBtn').click();
+
+        document.getElementById('addStaticSubject').addEventListener('click', function (evt) {
+            let subjects = document.querySelector('.subject-names').cloneNode(true);
+
+            // Add Label
+            subjects.children[0].innerHTML = 'Subject ' + (++totlStaticSubjects);
+
+            // add Approriate classes to select element
+            subjects.children[1].classList.add('select2');
+            subjects.classList.remove('d-none');
+
+            // Give each subject an id and name
+            subjects.children[1].setAttribute('name', 'subjects[subject' + (totlStaticSubjects) + '][name]');
+            subjects.children[1].setAttribute('id', 'subject' + totlStaticSubjects);
+            document.getElementById('allStaticSubjects').appendChild(subjects)
+
+        })
+    </script>
+
+
+
+
+
+    <!-- Select 2 Js -->
+    <script src="/js/select2.min.js"></script>
+    <!-- Date Picker Js -->
+    <script src="/js/datepicker.min.js"></script>

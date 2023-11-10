@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+    <body>
+        <div class="rbt-elements-area bg-color-white rbt-section-gap">
+            <div class="container">
+                <div class="row gy-5 row--30">
+
+                    <div class="col-lg-6">
+                        <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+                            <%- include('../partials/flash') %>
+
+                                <h3 class="title">Before You Proceed</h3>
+                                <p>Please indicate whether you are registering as a
+                                    <a href="<%= `/student/register`  %>"
+                                        class="d-inline p-0 m-0 h4 text-info"><u>Student</u></a> or <a
+                                        href="<%= `/teacher/register`  %>"
+                                        class="d-inline p-0 m-0 h4 text-info"><u>Teacher</u></a>
+                                </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- include footer -->
+        <%- include('../partials/footer') %>
+
+    </body>
+
+    </html>

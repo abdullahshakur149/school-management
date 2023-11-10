@@ -1,0 +1,138 @@
+<% layout('layouts/admin/boilerplate') %>
+    <link href="/plugins/loaders/custom-loader.css" rel="stylesheet" type="text/css">
+    <div class="dashboard-content-one">
+        <!-- Class Table Area Start Here -->
+        <div class="d-flex justify-content-end m-5">
+            <a href="/admin/add-class"
+                class="btn-fill-lg font-normal no-radius text-light gradient-pastel-green col-12 col-sm-6 col-lg-4 text-center">Add
+                Class</a>
+
+        </div>
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>All Classes</h3>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>Class Level</th>
+                                <th>Section</th>
+                                <th>Class Type</th>
+                                <th>Created At</th>
+                                <th class="">
+                                    Add to homepage</th>
+                                <th class="d-none">Date</th>
+                                <th class="d-none">Time</th>
+                                <th class="d-none">Phone</th>
+                                <th class="d-none">E-mail</th>
+                                <th class="d-none"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% if (allClss){ %>
+                                <% for (let cls of allClss){ %>
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/class/<%= cls._id %>/view">
+                                                <%= cls.classID %>
+                                            </a>
+                                        </td>
+                                        <td class="">
+                                            <%= cls.classLevel %>
+                                        </td>
+                                        <td>
+                                            <%= cls.section %>
+                                        </td>
+                                        <td>
+                                            <%= cls.classType.charAt(0).toUpperCase()+ cls.classType.slice(1) %>
+                                        </td>
+                                        <td>
+                                            <%= `${cls.created.toLocaleString('default', { month: 'short' })}
+                                                ${cls.created.getDate()} ${cls.created.getFullYear()}
+                                                ${cls.created.getHours()}:${cls.created.getMinutes()}`; %>
+                                        </td>
+                                        <td class="">
+                                            <div class="form-group">
+                                                <input style="cursor: pointer;"
+                                                    title="When this checkbox is checked then this class will be on display in homepage and will be shown in navbar under classes tab"
+                                                    type="checkbox" name="addToHome" id="<%= cls._id %>" value="true"
+                                                    class="form-control form-check w-25 addToHome"
+                                                    <%=(cls.putOnHomePage) ? 'checked' : '' %>>
+                                            </div>
+
+                                        </td>
+                                        <td class="d-none">02/05/2001</td>
+                                        <td class="d-none">10.00 am - 11.30 am</td>
+                                        <td class="d-none">+ 123 9988568</td>
+                                        <td class="d-none">kazifahim93@gmail.com</td>
+                                        <td class="d-none">
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }} %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- add or remove a class from home page -->
+    <script>
+        for (let input of document.querySelectorAll('.addToHome')) {
+            input.addEventListener('change', async function (evt) {
+                let parent = this.parentNode;
+                if (this.checked) {
+                    this.setAttribute('loading', '');
+                    try {
+                        replaceByLoader(parent)
+                        let res = await fetch(`/admin/class/${this.getAttribute('id')}/home?add=true`);
+                        reAddcheckBox(parent, this);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                } else if (!this.checked) {
+                    try {
+                        replaceByLoader(parent)
+                        let res = await fetch(`/admin/class/${this.getAttribute('id')}/home?add=false`);
+                        reAddcheckBox(parent, this);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+            })
+
+        }
+
+        function replaceByLoader(parent) {
+            const loader = '<div id="loader" class="spinner-border text-success  align-self-center loader-sm"> Loading...</div>';
+            parent.innerHTML = loader;
+        }
+        function reAddcheckBox(parent, self) {
+            parent.children[0].remove();
+            parent.appendChild(self);
+        }
+    </script>

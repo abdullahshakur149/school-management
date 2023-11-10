@@ -1,0 +1,405 @@
+<% layout('layouts/boilerplate') %>
+
+
+
+
+    <!-- End Side Vav -->
+    <a class="close_side_menu" href="javascript:void(0);"></a>
+    <div class="rbt-page-banner-wrapper  background-choice">
+        <!-- Start Banner BG Image  -->
+        <div class="rbt-banner-image"></div>
+        <!-- End Banner BG Image  -->
+    </div>
+    <!-- Start Card Style -->
+    <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Dashboard Top  -->
+                    <div class="rbt-dashboard-content-wrapper">
+                        <div class="tutor-bg-photo bg_image bg_image--23 height-350">
+                        </div>
+                        <!-- Start Tutor Information  -->
+                        <div class="rbt-tutor-information bg-dark">
+                            <div class="rbt-tutor-information-left">
+                                <div class="thumbnail rbt-avatars size-lg">
+                                    <img src="/img/female-profile.jpg" alt="Instructor">
+                                </div>
+                                <div class="tutor-content">
+                                    <h5 class="title">
+                                        <%= student.fullName %>
+                                    </h5>
+                                    <ul class="rbt-meta rbt-meta-white mt--5">
+                                        <% if (student.userProfile.admitted){ %>
+                                            <li> <img src="/svg/class.svg" width="15" alt="">&nbsp;You are Enrolled in
+                                                class <%= student.userProfile.admittedClass.classLevel + ', Section ' +
+                                                    student.userProfile.admittedClass.section %>
+                                            </li>
+                                            <% }else if(!student.userProfile.admitted &&
+                                                !student.userProfile.admissionRequested){ %>
+                                                <li class="text-danger"> <img src="/svg/class.svg" width="15"
+                                                        alt="">&nbsp;You are not
+                                                    enrolled in any class, you can access <a
+                                                        class="rbt-btn-link color-primary"
+                                                        href="/class/view/all/static">self paced
+                                                        classes</a> and study
+                                                    on your own untill you are enrolled
+                                                </li>
+                                                <% }else if(!student.userProfile.admitted &&
+                                                    student.userProfile.admissionRequested){ %>
+                                                    <li class="text-danger"> <img src="/svg/class.svg" width="15"
+                                                            alt="">&nbsp;
+                                                        <span class="d-none"> You have requested admission,</span> You
+                                                        can access <a class="rbt-btn-link color-primary"
+                                                            href="/class/view/all/static">self paced
+                                                            classes</a> and study
+                                                        on your own untill you are enrolled
+                                                    </li>
+                                                    <% } %>
+                                                        <li><img src="/svg/certificate.svg" width="15" alt="">&nbsp;0
+                                                            Certificate
+                                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Tutor Information  -->
+                    </div>
+                    <!-- End Dashboard Top  -->
+
+                    <div class="row g-5">
+                        <div class="col-lg-3">
+                            <!-- Start Dashboard Sidebar  -->
+                            <div class="rbt-default-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                                <div class="inner">
+                                    <div class="content-item-content">
+
+                                        <div class="rbt-default-sidebar-wrapper">
+                                            <div class="section-title mb--20">
+                                                <h6 class="rbt-title-style-2">Welcome, <%= student.fullName %>
+                                                </h6>
+                                            </div>
+                                            <nav class="mainmenu-nav">
+                                                <% if(student.userProfile.admitted){ %>
+                                                    <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                        <li><a
+                                                                href="/class/<%= student.userProfile.admittedClass.classType %>/<%= student.userProfile.admittedClass._id %>/view"><img
+                                                                    src="/svg/class.svg" width="15" alt=""> &nbsp;
+                                                                <span>Enrolled
+                                                                    Class</span></a></li>
+                                                        <li><a href="#"><img src="/svg/exam.svg" width="15" alt="">
+                                                                &nbsp;<span>My assignment
+                                                                    Attempts</span></a></li>
+                                                        </li>
+                                                    </ul>
+                                                    <% } %>
+                                            </nav>
+
+                                            <div class="section-title mt--40 mb--20">
+                                                <h6 class="rbt-title-style-2">User</h6>
+                                            </div>
+
+                                            <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li><a href="#"><img src="/svg/setting.svg" width="15" alt="">
+                                                            &nbsp;<span>Settings</span></a>
+                                                    </li>
+                                                    <li><a href="/logout"><img src="/svg/logout.svg" width="15" alt="">
+                                                            &nbsp;<span>Logout</span></a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dashboard Sidebar  -->
+                        </div>
+
+                        <div class="col-lg-9">
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb--60">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">Dashboard</h4>
+                                    </div>
+                                    <div class="row g-5">
+
+                                        <% if (student.userProfile.admitted){ %>
+
+                                            <!-- Start Single Card  -->
+                                            <a href="/class/<%= student.userProfile.admittedClass.classType %>/<%= student.userProfile.admittedClass._id %>/view"
+                                                class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                                <div
+                                                    class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-primary-opacity">
+                                                    <div class="inner">
+                                                        <div class="rbt-round-icon bg-primary-opacity">
+                                                            <img width="80" src="/svg/class.svg" alt="enrolled Class">
+                                                        </div>
+                                                        <div class="content">
+                                                            <h3 class="without-icon color-primary">
+                                                                <span class="">Enrolled
+                                                                    Class</span>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <% }else if(!student.userProfile.admitted &&
+                                                !student.userProfile.admissionRequested){ %>
+                                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                                    <div
+                                                        class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-danger-opacity">
+                                                        <div class="inner">
+                                                            <div class="rbt-round-icon bg-primary-opacity">
+                                                                <img width="80" src="/svg/class.svg"
+                                                                    alt="enrolled Class">
+                                                            </div>
+                                                            <div class="content">
+                                                                <h3 class="without-icon color-danger">
+                                                                    <span class="">No Enrolled</span>
+                                                                </h3>
+                                                                <span class="rbt-title-style-2 d-block d-none"><a
+                                                                        class="rbt-btn-link color-primary"
+                                                                        href="/class/interactive/apply">Apply for
+                                                                        online
+                                                                        Collaborative Classes</a></span>
+                                                                <br>
+                                                                <span class="rbt-title-style-2 d-block"><a
+                                                                        class="rbt-btn-link color-primary"
+                                                                        href="/class/view/all/static">Access self paced
+                                                                        Classes</a></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% }else if(!student.userProfile.admitted &&
+                                                    student.userProfile.admissionRequested){ %>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 d-none">
+                                                        <div
+                                                            class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-primary-opacity">
+                                                            <div class="inner">
+                                                                <div class="rbt-round-icon bg-primary-opacity">
+                                                                    <img width="80" src="/svg/class.svg"
+                                                                        alt="enrolled Class">
+                                                                </div>
+                                                                <div class="content">
+                                                                    <h3 class="without-icon color-primary">
+                                                                        <span class="">You have requested
+                                                                            Admission</span>
+                                                                    </h3>
+                                                                    <br>
+                                                                    <span class="rbt-title-style-2 d-block"><a
+                                                                            class="rbt-btn-link color-primary"
+                                                                            href="/class/view/all/static">You can access
+                                                                            self
+                                                                            paced
+                                                                            Classes</a></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <!-- End Single Card  -->
+
+                                                        <!-- Start Single Card  -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                                            <div
+                                                                class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-secondary-opacity">
+                                                                <div class="inner">
+                                                                    <div class="rbt-round-icon bg-secondary-opacity">
+                                                                        <h3 class="without-icon color-primary">
+                                                                            <span class="">
+                                                                                <%= student.userProfile.grade %>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="content">
+                                                                        <h3 class="without-icon color-primary">
+                                                                            <span class="">Your Grade</span>
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- End Single Card  -->
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                            <!-- Start Instructor Profile  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">
+                                            <%= student.fullName %>'s Profile
+                                        </h4>
+                                    </div>
+                                    <% if(student.userProfile.admitted){ %>
+                                        <!-- Start Profile Row  -->
+                                        <div class="rbt-profile-row row row--15">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="rbt-profile-content b2">Registration Date</div>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8">
+                                                <div class="rbt-profile-content b2">
+                                                    <%= `${student.userProfile.admissionDate.toLocaleString('default', {
+                                                        month: 'short' })}
+                                                        ${student.userProfile.admissionDate.getDate()}
+                                                        ${student.userProfile.admissionDate.getFullYear()}
+                                                        ${student.userProfile.admissionDate.getHours()}:${student.userProfile.admissionDate.getMinutes()}`;
+                                                        %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Profile Row  -->
+                                        <% } %>
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Full Name</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.fullName %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Date of Birth</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.DOB[0]+'/'+student.userProfile.DOB[1]+ '/'
+                                                            + student.userProfile.DOB[2] %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Father Name</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.fatherName %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Gender</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.gender %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Email</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.email %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Phone Number</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.contact.phoneNo ?
+                                                            student.userProfile.contact.phoneNo : 'N/A' %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Profile Row  -->
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Address</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.contact.address.streetAddress+', '+
+                                                            student.userProfile.contact.address.country %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="rbt-profile-row row row--15 mt--15">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Education</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">
+                                                        <%= student.userProfile.education.instituteName+' ,Grade '+
+                                                            student.userProfile.education.previous_grade %>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <!-- End Profile Row  -->
+
+                                            <!-- Start Profile Row  -->
+                                            <div class="rbt-profile-row row row--15 mt--15 d-none">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="rbt-profile-content b2">Biography</div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="rbt-profile-content b2">I' m the Front-End Developer
+                                                            for #Rainbow IT in Bangladesh, OR. I have serious passion
+                                                            for UI effects, animations and creating intuitive, dynamic
+                                                            user experiences.</div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Profile Row  -->
+                                            </div>
+                                </div>
+                                <!-- End Instructor Profile  -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Card Style -->
+        <div class="rbt-separator-mid">
+            <div class="container">
+                <hr class="rbt-separator m-0">
+            </div>
+        </div>
+
+        <%- include('../partials/footer') %>
+
+
+            </body>
+
+            </html>

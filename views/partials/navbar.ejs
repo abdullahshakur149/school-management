@@ -1,0 +1,627 @@
+<!-- Start Header Area -->
+<style>
+    #about-us:hover,
+    #school-classes:hover,
+    #other-course:hover {
+        color: white !important;
+    }
+
+    nav .with-megamenu .has-menu-child-item .position-static a:hover {
+        color: white !important;
+    }
+
+    .inner-wrapper * {
+        color: #fff !important;
+    }
+</style>
+
+
+<header class="rbt-header rbt-header-10">
+    <div class="rbt-header-wrapper header-space-betwween header-sticky background-choice-gradient" style="">
+        <div class="container-fluid">
+            <div class="mainbar-row rbt-navigation-center align-items-center">
+                <div class="header-left rbt-header-content">
+                    <div class="header-info">
+                        <div class="logo">
+                            <a href="<%= `/` %>">
+                                <img src="/logos/logo-2.png" alt="Soraya Online School Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rbt-main-navigation d-none d-xl-block">
+                    <nav class="mainmenu-nav">
+                        <ul class="mainmenu">
+                            <% if(pageInfo.classes){ %>
+                                <li class="with-megamenu has-menu-child-item ">
+                                    <a href="#" id="school-classes">School Classes </a>
+                                    <!-- Start Mega Menu  -->
+                                    <div class="rbt-megamenu grid-item-2">
+                                        <div class="wrapper">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mega-top-banner  background-choice">
+                                                        <div class="content">
+                                                            <h4 class="title">Select your class and category</h4>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row--15">
+                                                <% if(pageInfo.classes.interactiveClasses.length){ %>
+                                                    <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
+                                                        <h3 class="rbt-short-title">Interactive Classes</h3>
+                                                        <ul class="mega-menu-item">
+                                                            <% for(let cls of pageInfo.classes.interactiveClasses){ %>
+                                                                <li><a
+                                                                        href="<%= `/class/interactive/${cls._id}/view` %>">
+                                                                        Class &nbsp;<%= cls.classLevel %>
+                                                                    </a>
+                                                                </li>
+                                                                <% } %>
+
+                                                        </ul>
+                                                    </div>
+                                                    <% } %>
+                                                        <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
+                                                            <h3 class="rbt-short-title">Static Classes</h3>
+                                                            <ul class="mega-menu-item">
+                                                                <% if(pageInfo.classes.staticClasses){ %>
+                                                                    <% for(let cls of pageInfo.classes.staticClasses){
+                                                                        %>
+                                                                        <li><a
+                                                                                href="<%= `/class/static/${cls._id}/view` %>">
+                                                                                Class &nbsp;<%= cls.classLevel %>
+                                                                            </a>
+                                                                        </li>
+                                                                        <% } %>
+                                                                            <% } %>
+                                                            </ul>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Mega Menu  -->
+                                </li>
+
+                                <% } %>
+
+                                    <li class="has-dropdown has-menu-child-item">
+                                        <a href="#" id="other-course">Other Courses
+
+                                        </a>
+                                        <ul class="submenu">
+                                            <li class="has-dropdown"><a href="#">Comming Soon. <br> Stay Tuned</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="with-megamenu has-menu-child-item position-static">
+                                        <a href="/about-us" class="" id="about-us">About Us </a>
+                                    </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="header-right">
+
+                    <!-- Navbar Icons -->
+                    <ul class="quick-access">
+
+                        <div class="header-info m-2" id="google_translate_element">
+                        </div>
+
+                        <% if (currentUser){ %>
+                            <li class="account-access rbt-user-wrapper">
+                                <a href="#">
+                                    <svg viewBox="0 0 24 24" width="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path opacity="0.4"
+                                                d="M12.1207 12.78C12.0507 12.77 11.9607 12.77 11.8807 12.78C10.1207 12.72 8.7207 11.28 8.7207 9.50998C8.7207 7.69998 10.1807 6.22998 12.0007 6.22998C13.8107 6.22998 15.2807 7.69998 15.2807 9.50998C15.2707 11.28 13.8807 12.72 12.1207 12.78Z"
+                                                stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                            <path opacity="0.34"
+                                                d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z"
+                                                stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                            <path
+                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <div class="rbt-user-menu-list-wrapper"
+                                    style="right: 0% !important; left: unset !important;">
+                                    <div class="inner">
+                                        <div class="rbt-admin-profile">
+                                            <div class="admin-thumbnail">
+                                                <img src="/img/female-profile.jpg" alt="User Images">
+                                            </div>
+                                            <div class="admin-info">
+                                                <span class="name">
+                                                    <%= currentUser.fullName %>
+                                                </span>
+                                                <a class="rbt-btn-link color-primary" href="/student/dashboard">View
+                                                    Profile</a>
+                                            </div>
+                                        </div>
+                                        <ul class="user-list-wrapper">
+                                            <li>
+                                                <% if(currentUser.role=='student' ){ %>
+                                                    <a href="/student/dashboard">
+                                                        <svg class="" width="15" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                    d="M11.3103 1.77586C11.6966 1.40805 12.3034 1.40805 12.6897 1.77586L20.6897 9.39491L23.1897 11.7759C23.5896 12.1567 23.605 12.7897 23.2241 13.1897C22.8433 13.5896 22.2103 13.605 21.8103 13.2241L21 12.4524V20C21 21.1046 20.1046 22 19 22H14H10H5C3.89543 22 3 21.1046 3 20V12.4524L2.18966 13.2241C1.78972 13.605 1.15675 13.5896 0.775862 13.1897C0.394976 12.7897 0.410414 12.1567 0.810345 11.7759L3.31034 9.39491L11.3103 1.77586ZM5 10.5476V20H9V15C9 13.3431 10.3431 12 12 12C13.6569 12 15 13.3431 15 15V20H19V10.5476L12 3.88095L5 10.5476ZM13 20V15C13 14.4477 12.5523 14 12 14C11.4477 14 11 14.4477 11 15V20H13Z"
+                                                                    fill="#000"></path>
+                                                            </g>
+                                                        </svg>
+
+                                                        <span>&nbsp;My Dashboard</span>
+                                                    </a>
+                                                    <% }else if (currentUser.role=='teacher' ){%>
+                                                        <a href="/teacher">
+                                                            <svg class="" width="15" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                        d="M11.3103 1.77586C11.6966 1.40805 12.3034 1.40805 12.6897 1.77586L20.6897 9.39491L23.1897 11.7759C23.5896 12.1567 23.605 12.7897 23.2241 13.1897C22.8433 13.5896 22.2103 13.605 21.8103 13.2241L21 12.4524V20C21 21.1046 20.1046 22 19 22H14H10H5C3.89543 22 3 21.1046 3 20V12.4524L2.18966 13.2241C1.78972 13.605 1.15675 13.5896 0.775862 13.1897C0.394976 12.7897 0.410414 12.1567 0.810345 11.7759L3.31034 9.39491L11.3103 1.77586ZM5 10.5476V20H9V15C9 13.3431 10.3431 12 12 12C13.6569 12 15 13.3431 15 15V20H19V10.5476L12 3.88095L5 10.5476ZM13 20V15C13 14.4477 12.5523 14 12 14C11.4477 14 11 14.4477 11 15V20H13Z"
+                                                                        fill="#000"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <span>&nbsp;My Dashboard</span>
+                                                        </a>
+                                                        <% }else if (currentUser.role=='teacher' ){%>
+                                                            <a href="/admin">
+                                                                <svg class="" width="15" viewBox="0 0 24 24" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></g>
+                                                                    <g id="SVGRepo_iconCarrier">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M11.3103 1.77586C11.6966 1.40805 12.3034 1.40805 12.6897 1.77586L20.6897 9.39491L23.1897 11.7759C23.5896 12.1567 23.605 12.7897 23.2241 13.1897C22.8433 13.5896 22.2103 13.605 21.8103 13.2241L21 12.4524V20C21 21.1046 20.1046 22 19 22H14H10H5C3.89543 22 3 21.1046 3 20V12.4524L2.18966 13.2241C1.78972 13.605 1.15675 13.5896 0.775862 13.1897C0.394976 12.7897 0.410414 12.1567 0.810345 11.7759L3.31034 9.39491L11.3103 1.77586ZM5 10.5476V20H9V15C9 13.3431 10.3431 12 12 12C13.6569 12 15 13.3431 15 15V20H19V10.5476L12 3.88095L5 10.5476ZM13 20V15C13 14.4477 12.5523 14 12 14C11.4477 14 11 14.4477 11 15V20H13Z"
+                                                                            fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+
+                                                                <span>&nbsp;My Dashboard</span>
+                                                            </a>
+                                                            <% }%>
+
+                                            </li>
+                                            <% if(currentUser.role=='student' && student.userProfile.admitted ){ %>
+
+                                                <li>
+                                                    <a
+                                                        href="/class/<%= student.userProfile.admittedClass.classType %>/<%= student.userProfile.admittedClass._id %>/view">
+                                                        <svg width="15" viewBox="0 0 48 48" id="Layer_1" version="1.1"
+                                                            xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <style type="text/css">
+                                                                    .st0 {
+                                                                        fill: #000;
+                                                                    }
+                                                                </style>
+                                                                <path class="st0"
+                                                                    d="M41.089,25.947h-1.737c-0.24-3.863-3.219-6.991-7.017-7.457c1.88-1.135,3.144-3.192,3.144-5.543 c0-3.571-2.905-6.477-6.477-6.477s-6.478,2.906-6.478,6.477c0,2.352,1.264,4.408,3.145,5.543c-3.799,0.466-6.777,3.594-7.017,7.457 h-2.898c-0.007-0.096-0.032-0.192-0.091-0.269c-0.168-0.219-0.256-0.48-0.256-0.758s0.088-0.54,0.255-0.758 c0.06-0.077,0.084-0.173,0.092-0.269H18.1c0.276,0,0.5-0.224,0.5-0.5v-0.464c0-0.11-0.036-0.217-0.103-0.304 c-0.168-0.219-0.256-0.481-0.256-0.758c0-0.278,0.088-0.54,0.255-0.758c0.067-0.087,0.104-0.194,0.104-0.304V20.34 c0-0.276-0.224-0.5-0.5-0.5h-2.168c-0.007-0.096-0.032-0.191-0.091-0.268c-0.168-0.219-0.256-0.481-0.256-0.758 s0.088-0.54,0.256-0.758c0.066-0.087,0.103-0.194,0.103-0.304v-0.464c0-0.276-0.224-0.5-0.5-0.5H8.615 c-0.543,0-1.053,0.21-1.434,0.592c-0.382,0.382-0.593,0.891-0.593,1.435c0,1.117,0.909,2.026,2.026,2.026H9.53 c-0.182,0.308-0.286,0.658-0.286,1.027c0,0.376,0.11,0.724,0.289,1.026H8.438c-0.542,0-1.052,0.21-1.434,0.592 s-0.593,0.891-0.593,1.435c0,0.427,0.134,0.822,0.36,1.149c-0.109,0.092-0.182,0.224-0.182,0.378v5.166c0,0.276,0.224,0.5,0.5,0.5 h2.833v8.917c0,0.276,0.224,0.5,0.5,0.5h27.334c0.276,0,0.5-0.224,0.5-0.5v-8.917h2.833c0.276,0,0.5-0.224,0.5-0.5v-5.166 C41.589,26.171,41.365,25.947,41.089,25.947z M23.524,12.947c0-3.02,2.457-5.477,5.478-5.477c3.02,0,5.477,2.457,5.477,5.477 s-2.457,5.477-5.477,5.477C25.981,18.424,23.524,15.967,23.524,12.947z M26.649,19.424h4.704c3.705,0,6.749,2.883,7.006,6.523 H19.645C19.901,22.307,22.945,19.424,26.649,19.424z M7.589,18.814c0-0.276,0.106-0.534,0.3-0.728 c0.192-0.193,0.451-0.299,0.727-0.299h6.216c-0.162,0.315-0.246,0.664-0.246,1.026s0.084,0.711,0.246,1.026h-3.56H8.615 C8.049,19.84,7.589,19.38,7.589,18.814z M10.244,21.867c0-0.276,0.106-0.534,0.3-0.727s0.452-0.3,0.728-0.3h4.172h2.044 c-0.162,0.315-0.246,0.664-0.246,1.027c0,0.363,0.084,0.711,0.246,1.026h-2.221h-3.995C10.705,22.894,10.244,22.433,10.244,21.867z M7.711,24.193c0.193-0.193,0.451-0.3,0.727-0.3h2.834h3.383c-0.162,0.315-0.246,0.664-0.246,1.027c0,0.363,0.084,0.711,0.246,1.027 H8.438c-0.566,0-1.026-0.461-1.026-1.027C7.411,24.645,7.518,24.387,7.711,24.193z M37.256,40.53H10.922v-8.417h26.334V40.53z M40.589,31.113h-2.833H10.422H7.589v-4.166h0.849h6.829h3.86h19.75h1.712V31.113z">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                        <span>&nbsp;Enrolled Class</span>
+                                                    </a>
+                                                </li>
+                                                <% }%>
+
+                                                    <li class="d-none">
+                                                        <a href="instructor-reviews.html">
+                                                            <svg width="15" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path
+                                                                        d="M12.5095 17.7915C12.1888 17.6289 11.8112 17.6289 11.4905 17.7915L7.37943 19.8751C6.50876 20.3164 5.52842 19.5193 5.76452 18.562L6.72576 14.6645C6.81767 14.2918 6.72079 13.8972 6.46729 13.6117L3.29416 10.0378C2.66165 9.32543 3.11095 8.18715 4.05367 8.11364L8.48026 7.76848C8.89433 7.73619 9.25828 7.47809 9.43013 7.09485L10.9627 3.67703C11.3675 2.77432 12.6325 2.77432 13.0373 3.67703L14.5699 7.09485C14.7417 7.47809 15.1057 7.73619 15.5197 7.76848L19.9463 8.11364C20.889 8.18715 21.3384 9.32543 20.7058 10.0378L17.5327 13.6117C17.2792 13.8972 17.1823 14.2918 17.2742 14.6645L18.2355 18.562C18.4716 19.5193 17.4912 20.3164 16.6206 19.8751L12.5095 17.7915Z"
+                                                                        stroke="#000" stroke-width="1.5"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                            <span>&nbsp;Reviews</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <svg width="15" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path
+                                                                        d="M18.6 3H5.4A2.4 2.4 0 0 0 3 5.4v15.2A2.4 2.4 0 0 0 5.4 23h13.2a2.4 2.4 0 0 0 2.4-2.4V5.4A2.4 2.4 0 0 0 18.6 3Z"
+                                                                        fill="#000" fill-opacity=".16" stroke="#000"
+                                                                        stroke-width="1.5" stroke-miterlimit="10">
+                                                                    </path>
+                                                                    <path d="M7 14h10M7 11h10M7 17h6" stroke="#000"
+                                                                        stroke-width="1.5" stroke-miterlimit="10"
+                                                                        stroke-linecap="round"></path>
+                                                                    <path
+                                                                        d="M15.2 6a.8.8 0 0 0 .8-.8V3H8v2.2a.8.8 0 0 0 .8.8h6.4Z"
+                                                                        fill="#000"></path>
+                                                                    <path
+                                                                        d="M16 3v2.2a.8.8 0 0 1-.8.8H8.8a.8.8 0 0 1-.8-.8V3"
+                                                                        stroke="#000" stroke-width="1.5"
+                                                                        stroke-miterlimit="10" stroke-linecap="round">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M18.6 3H5.4A2.4 2.4 0 0 0 3 5.4v15.2A2.4 2.4 0 0 0 5.4 23h13.2a2.4 2.4 0 0 0 2.4-2.4V5.4A2.4 2.4 0 0 0 18.6 3Z"
+                                                                        stroke="#000" stroke-width="1.5"
+                                                                        stroke-miterlimit="10">
+                                                                    </path>
+                                                                    <path d="M14 3a2 2 0 1 0-4 0" stroke="#000"
+                                                                        stroke-width="1.5" stroke-miterlimit="10"
+                                                                        stroke-linecap="round"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <span>&nbsp;My Assignment Attempts</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg width="40" fill="#000" version="1.1" id="Layer_1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                viewBox="0 0 32 32" xml:space="preserve">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path id="question--and--answer_1_"
+                                                                        d="M10.7,31.199l-3.893-5.844H3c-1.301,0-2.36-1.059-2.36-2.36v-10 c0-1.301,1.059-2.36,2.36-2.36h11.64V3c0-1.301,1.059-2.36,2.36-2.36h12c1.302,0,2.36,1.059,2.36,2.36v8 c0,1.301-1.059,2.36-2.36,2.36h-2.777l-1.9,3.801l-0.645-0.322l2-4C25.74,12.717,25.864,12.64,26,12.64h3 c0.904,0,1.64-0.736,1.64-1.64V3c0-0.904-0.735-1.64-1.64-1.64H17c-0.904,0-1.64,0.736-1.64,1.64v7.635H18 c1.181,0,2.161,0.871,2.333,2.005H23v0.72h-2.64v9.635c0,1.302-1.059,2.36-2.36,2.36h-7v-0.721h7c0.904,0,1.64-0.735,1.64-1.64v-10 c0-0.904-0.735-1.64-1.64-1.64H3c-0.904,0-1.64,0.736-1.64,1.64v10c0,0.904,0.736,1.64,1.64,1.64h4c0.121,0,0.233,0.061,0.3,0.161 l4,6.005L10.7,31.199z M23.378,8.495h-0.721c0-1.219,0.217-1.677,1.008-2.129c0.555-0.317,0.78-0.666,0.78-1.205 c0-0.962-0.776-1.303-1.441-1.303c-0.812,0-1.449,0.573-1.449,1.303h-0.721c0-1.134,0.953-2.023,2.17-2.023 c1.272,0,2.162,0.832,2.162,2.023c0,1.055-0.653,1.549-1.144,1.83C23.5,7.29,23.378,7.464,23.378,8.495z M11.5,18 c0,0.552-0.448,1-1,1s-1-0.448-1-1s0.448-1,1-1S11.5,17.448,11.5,18z M15.5,17c-0.552,0-1,0.448-1,1s0.448,1,1,1s1-0.448,1-1 S16.052,17,15.5,17z M5.5,17c-0.552,0-1,0.448-1,1s0.448,1,1,1s1-0.448,1-1S6.052,17,5.5,17z M23,10.625 c0.345,0,0.625-0.28,0.625-0.625S23.345,9.375,23,9.375S22.375,9.655,22.375,10S22.655,10.625,23,10.625z">
+                                                                    </path>
+                                                                    <rect id="_Transparent_Rectangle" style="fill:none;"
+                                                                        width="32" height="32"></rect>
+                                                                </g>
+                                                            </svg>
+                                                            <span>&nbsp;Question &amp; Answer</span>
+                                                        </a>
+                                                    </li>
+                                        </ul>
+                                        <hr class="mt--10 mb--10">
+                                        <hr class="mt--10 mb--10">
+                                        <ul class="user-list-wrapper">
+                                            <li>
+                                                <a href="#">
+                                                    <svg width="15" fill="#000" viewBox="0 0 32 32" version="1.1"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path
+                                                                d="M30.015 12.97l-2.567-0.569c-0.2-0.64-0.462-1.252-0.762-1.841l1.389-2.313c0.518-0.829 0.78-2.047 0-2.829l-1.415-1.414c-0.78-0.781-2.098-0.64-2.894-0.088l-2.251 1.434c-0.584-0.303-1.195-0.563-1.829-0.768l-0.576-2.598c-0.172-0.953-1.005-1.984-2.11-1.984h-2c-1.104 0-1.781 1.047-2 2l-0.642 2.567c-0.678 0.216-1.328 0.492-1.948 0.819l-2.308-1.47c-0.795-0.552-2.114-0.692-2.894 0.088l-1.415 1.414c-0.781 0.782-0.519 2 0 2.828l1.461 2.435c-0.274 0.552-0.517 1.123-0.705 1.72l-2.566 0.569c-0.953 0.171-1.984 1.005-1.984 2.109v2c0 1.105 1.047 1.782 2 2l2.598 0.649c0.179 0.551 0.404 1.080 0.658 1.593l-1.462 2.438c-0.518 0.828-0.78 2.047 0 2.828l1.415 1.414c0.78 0.782 2.098 0.64 2.894 0.089l2.313-1.474c0.623 0.329 1.277 0.608 1.96 0.823l0.64 2.559c0.219 0.953 0.896 2 2 2h2c1.105 0 1.938-1.032 2.11-1.985l0.577-2.604c0.628-0.203 1.23-0.459 1.808-0.758l2.256 1.438c0.796 0.552 2.114 0.692 2.895-0.089l1.415-1.414c0.78-0.782 0.518-2 0-2.828l-1.39-2.317c0.279-0.549 0.521-1.12 0.716-1.714l2.599-0.649c0.953-0.219 2-0.895 2-2v-2c0-1.104-1.031-1.938-1.985-2.11zM30.001 16.939c-0.085 0.061-0.245 0.145-0.448 0.192l-3.708 0.926-0.344 1.051c-0.155 0.474-0.356 0.954-0.597 1.428l-0.502 0.986 1.959 3.267c0.125 0.2 0.183 0.379 0.201 0.485l-1.316 1.314c-0.127-0.040-0.271-0.092-0.341-0.14l-3.292-2.099-1.023 0.529c-0.493 0.256-0.999 0.468-1.503 0.631l-1.090 0.352-0.824 3.723c-0.038 0.199-0.145 0.36-0.218 0.417h-1.8c-0.061-0.085-0.145-0.245-0.191-0.448l-0.921-3.681-1.066-0.338c-0.549-0.173-1.097-0.404-1.63-0.684l-1.028-0.543-3.293 2.099c-0.135 0.091-0.279 0.143-0.409 0.143l-1.311-1.276c0.018-0.104 0.072-0.274 0.181-0.449l2.045-3.408-0.487-0.98c-0.227-0.462-0.407-0.895-0.547-1.325l-0.343-1.052-3.671-0.918c-0.231-0.052-0.398-0.139-0.485-0.2v-1.86c0.001 0.001 0.002 0.001 0.005 0.001 0.034 0 0.198-0.117 0.335-0.142l3.772-0.835 0.346-1.103c0.141-0.449 0.333-0.917 0.588-1.43l0.487-0.98-2.024-3.373c-0.125-0.201-0.184-0.38-0.201-0.485l1.315-1.314c0.128 0.041 0.271 0.093 0.34 0.14l3.354 2.138 1.027-0.542c0.527-0.278 1.073-0.507 1.622-0.682l1.063-0.338 0.912-3.649c0.053-0.231 0.138-0.398 0.2-0.485h1.859c-0.014 0.020 0.115 0.195 0.142 0.339l0.84 3.794 1.089 0.352c0.511 0.165 1.023 0.38 1.523 0.639l1.023 0.532 3.224-2.053c0.135-0.092 0.279-0.143 0.409-0.143l1.313 1.276c-0.017 0.104-0.072 0.276-0.181 0.45l-1.98 3.296 0.505 0.988c0.273 0.533 0.48 1.033 0.635 1.529l0.346 1.104 3.697 0.82c0.224 0.041 0.398 0.171 0.434 0.241zM16.013 9.99c-3.321 0-6.023 2.697-6.023 6.010s2.702 6.010 6.023 6.010 6.023-2.697 6.023-6.009c0-3.313-2.702-6.010-6.023-6.010zM16 20c-2.205 0-4-1.794-4-4s1.794-4 4-4c2.206 0 4 1.794 4 4s-1.794 4-4 4z">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                    <span>&nbsp;Settings</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/logout">
+                                                    <svg width="15" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path
+                                                                d="M17.2929 14.2929C16.9024 14.6834 16.9024 15.3166 17.2929 15.7071C17.6834 16.0976 18.3166 16.0976 18.7071 15.7071L21.6201 12.7941C21.6351 12.7791 21.6497 12.7637 21.6637 12.748C21.87 12.5648 22 12.2976 22 12C22 11.7024 21.87 11.4352 21.6637 11.252C21.6497 11.2363 21.6351 11.2209 21.6201 11.2059L18.7071 8.29289C18.3166 7.90237 17.6834 7.90237 17.2929 8.29289C16.9024 8.68342 16.9024 9.31658 17.2929 9.70711L18.5858 11H13C12.4477 11 12 11.4477 12 12C12 12.5523 12.4477 13 13 13H18.5858L17.2929 14.2929Z"
+                                                                fill="#000"></path>
+                                                            <path
+                                                                d="M5 2C3.34315 2 2 3.34315 2 5V19C2 20.6569 3.34315 22 5 22H14.5C15.8807 22 17 20.8807 17 19.5V16.7326C16.8519 16.647 16.7125 16.5409 16.5858 16.4142C15.9314 15.7598 15.8253 14.7649 16.2674 14H13C11.8954 14 11 13.1046 11 12C11 10.8954 11.8954 10 13 10H16.2674C15.8253 9.23514 15.9314 8.24015 16.5858 7.58579C16.7125 7.4591 16.8519 7.35296 17 7.26738V4.5C17 3.11929 15.8807 2 14.5 2H5Z"
+                                                                fill="#000"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <span>&nbsp;Logout</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <% } %>
+
+
+
+                    </ul>
+
+                    <% if (!currentUser){ %>
+
+                        <div class="rbt-btn-wrapper d-none d-lg-block">
+                            <a class="rbt-btn rbt-marquee-btn marquee-auto btn-border-gradient radius-round btn-sm hover-transform-none d-flex justify-content-center align-items-center"
+                                style="box-shadow: unset;" href="<%= `/register` %>">
+                                <span data-text="Register">Register</span>
+                            </a>
+                        </div>
+                        <a class="transparent-button text-white m-3 d-none d-lg-block" href="/login">Login</a>
+                        <% } %>
+
+
+
+
+
+
+                            <!-- Start Mobile-Menu-Bar -->
+                            <div class="mobile-menu-bar d-block d-xl-none">
+                                <div class="hamberger">
+                                    <button class="hamberger-button rbt-round-btn">
+                                        <svg width="25" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4ZM3 12C3 11.4477 3.44772 11 4 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12ZM3 18C3 17.4477 3.44772 17 4 17H20C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H4C3.44772 19 3 18.5523 3 18Z"
+                                                    fill="#fff"></path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Start Mobile-Menu-Bar -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="rbt-close_side_menu" href="javascript:void(0);"></a>
+</header>
+<!-- Mobile Menu Section -->
+<div class="popup-mobile-menu">
+    <div class="inner-wrapper background-choice-gradient-vertical">
+
+        <div class="inner-top">
+            <div class="content">
+                <div class="logo">
+                    <a href="<%= `/` %>">
+                        <img src="/logos/logo-2.png" alt="Education Logo Images">
+                    </a>
+                </div>
+                <div class="rbt-btn-close">
+                    <button class="close-button rbt-round-btn">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M19 5L4.99998 19M5.00001 5L19 19" stroke="#000" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+            <% if (!currentUser){ %>
+                <div class="mt-3">
+                    <a class="transparent-button m-3 border p-2" href="/register">Register</a>
+                    <a class="transparent-button m-3 border p-2" href="/login">Login</a>
+                </div>
+                <% } %>
+                    <p class="description">Soraya Online School is an online plateform for virtual learning.</p>
+                    <ul class="navbar-top-left rbt-information-list justify-content-start">
+                        <li>
+                            <a href="mailto:hello@example.com"><svg width="20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M2.54433 5.16792C3.0468 4.46923 3.86451 4 4.8 4H19.2C20.1355 4 20.9532 4.46923 21.4557 5.16792C21.7993 5.64567 22 6.235 22 6.86667V17.1333C22 18.682 20.7804 20 19.2 20H4.8C3.21964 20 2 18.682 2 17.1333V6.86667C2 6.23499 2.20074 5.64567 2.54433 5.16792ZM4.9327 6L11.2598 12.9647C11.6566 13.4015 12.3434 13.4015 12.7402 12.9647L19.0673 6H4.9327ZM20 7.94766L14.2205 14.3096C13.0301 15.6199 10.9699 15.6199 9.77948 14.3096L4 7.94766V17.1333C4 17.6466 4.39214 18 4.8 18H19.2C19.6079 18 20 17.6466 20 17.1333V7.94766Z"
+                                            fill="#fff"></path>
+                                    </g>
+                                </svg>&nbsp;example@gmail.com</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg width="20" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-phone-number"
+                                    fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <title>129</title>
+                                        <defs> </defs>
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g fill="#fff">
+                                                <g>
+                                                    <path
+                                                        d="M15.924,3.779 C15.924,-0.037 9.787,0.09 7.637,0.09 C5.485,0.09 0.038,0.136 0.038,3.953 L3.947,3.953 C3.947,3.926 3.951,2.759 3.951,2.996 C3.951,2.558 4.43,1.969 5.504,1.969 L10.517,1.969 C11.563,1.969 12.054,2.558 12.054,2.996 L12.054,2.996 C12.054,3.15 12.062,3.923 12.062,3.953 L15.922,3.953 C15.922,3.94 15.924,3.791 15.924,3.779 L15.924,3.779 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M4.987,9.338 C4.987,9.679 4.701,9.955 4.349,9.955 L3.652,9.955 C3.299,9.955 3.013,9.679 3.013,9.338 L3.013,8.662 C3.013,8.321 3.299,8.045 3.652,8.045 L4.349,8.045 C4.701,8.045 4.987,8.321 4.987,8.662 L4.987,9.338 L4.987,9.338 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M12.975,9.345 C12.975,9.698 12.69,9.983 12.336,9.983 L11.64,9.983 C11.287,9.983 11.002,9.698 11.002,9.345 L11.002,8.648 C11.002,8.295 11.287,8.01 11.64,8.01 L12.336,8.01 C12.69,8.01 12.975,8.295 12.975,8.648 L12.975,9.345 L12.975,9.345 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M8.986,9.349 C8.986,9.702 8.701,9.987 8.348,9.987 L7.65,9.987 C7.298,9.987 7.013,9.702 7.013,9.349 L7.013,8.652 C7.013,8.299 7.298,8.014 7.65,8.014 L8.348,8.014 C8.701,8.014 8.986,8.299 8.986,8.652 L8.986,9.349 L8.986,9.349 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M4.962,12.336 C4.962,12.689 4.681,12.974 4.334,12.974 L3.648,12.974 C3.3,12.974 3.019,12.689 3.019,12.336 L3.019,11.639 C3.019,11.285 3.3,11 3.648,11 L4.334,11 C4.681,11 4.962,11.285 4.962,11.639 L4.962,12.336 L4.962,12.336 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M12.943,12.346 C12.943,12.694 12.668,12.974 12.326,12.974 L11.65,12.974 C11.308,12.974 11.033,12.694 11.033,12.346 L11.033,11.66 C11.033,11.311 11.308,11.031 11.65,11.031 L12.326,11.031 C12.668,11.031 12.943,11.311 12.943,11.66 L12.943,12.346 L12.943,12.346 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M8.982,12.346 C8.982,12.694 8.698,12.974 8.345,12.974 L7.648,12.974 C7.295,12.974 7.01,12.694 7.01,12.346 L7.01,11.66 C7.01,11.311 7.295,11.031 7.648,11.031 L8.345,11.031 C8.698,11.031 8.982,11.311 8.982,11.66 L8.982,12.346 L8.982,12.346 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M4.993,15.347 C4.993,15.689 4.707,15.965 4.355,15.965 L3.658,15.965 C3.305,15.965 3.019,15.689 3.019,15.347 L3.019,14.671 C3.019,14.33 3.305,14.054 3.658,14.054 L4.355,14.054 C4.707,14.054 4.993,14.33 4.993,14.671 L4.993,15.347 L4.993,15.347 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M12.975,15.357 C12.975,15.711 12.69,15.996 12.336,15.996 L11.64,15.996 C11.287,15.996 11.002,15.711 11.002,15.357 L11.002,14.66 C11.002,14.307 11.287,14.022 11.64,14.022 L12.336,14.022 C12.69,14.022 12.975,14.307 12.975,14.66 L12.975,15.357 L12.975,15.357 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                    <path
+                                                        d="M8.982,15.357 C8.982,15.711 8.703,15.996 8.355,15.996 L7.669,15.996 C7.321,15.996 7.042,15.711 7.042,15.357 L7.042,14.66 C7.042,14.307 7.321,14.022 7.669,14.022 L8.355,14.022 C8.703,14.022 8.982,14.307 8.982,14.66 L8.982,15.357 L8.982,15.357 Z"
+                                                        class="si-glyph-fill"> </path>
+                                                </g>
+                                                <path
+                                                    d="M0.992,5.973 L3.039,5.973 C3.039,5.973 3.746,6.201 3.926,5 L0.067,5 C0.234,6.113 0.992,5.973 0.992,5.973 L0.992,5.973 Z"
+                                                    class="si-glyph-fill"> </path>
+                                                <path
+                                                    d="M12.115,5 C12.324,6.053 13.078,5.973 13.078,5.973 L14.969,5.973 C14.969,5.973 15.727,5.984 15.912,5 L12.115,5 L12.115,5 Z"
+                                                    class="si-glyph-fill"> </path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>&nbsp;(302) 555-0107</a>
+                        </li>
+                    </ul>
+        </div>
+
+        <nav class="mainmenu-nav">
+            <ul class="mainmenu">
+
+                <li class="with-megamenu has-menu-child-item">
+                    <a href="#">School Classes </a>
+                    <!-- Start Mega Menu  -->
+                    <div class="rbt-megamenu grid-item-2">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mega-top-banner">
+                                        <div class="content">
+                                            <h4 class="title">Soraya Online School</h4>
+                                            <p class="description">Start Learning with the class type of your
+                                                choice.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row--15">
+                                <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
+                                    <h3 class="rbt-short-title">Interactive Classes</h3>
+                                    <% if(pageInfo.classes.interactiveClasses.length){ %>
+                                        <ul class="mega-menu-item">
+                                            <% for(let interactiveClass of pageInfo.classes.interactiveClasses){ %>
+
+                                                <li><a href="/class/interactive/<%= interactiveClass._id %>/view">Class
+                                                        <%= interactiveClass.classLevel %>
+                                                    </a></li>
+                                                <% } %>
+                                        </ul>
+                                        <% } %>
+                                </div>
+                                <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
+                                    <h3 class="rbt-short-title">Static Classes</h3>
+                                    <% if(pageInfo.classes.staticClasses.length){ %>
+                                        <ul class="mega-menu-item">
+                                            <% for(let staticClass of pageInfo.classes.staticClasses){ %>
+
+                                                <li><a href="/class/static/<%= staticClass._id %>/view">Class
+                                                        <%= staticClass.classLevel %>
+                                                    </a></li>
+                                                <% } %>
+                                        </ul>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Mega Menu  -->
+                </li>
+
+                <li class="has-dropdown has-menu-child-item">
+                    <a href="#">Other Courses
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Comming Soon. Stay Tuned</a></li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="/about-us">About Us</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="mobile-menu-bottom">
+
+            <div class="social-share-wrapper">
+                <span class="rbt-short-title d-block">Find Us</span>
+                <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
+                    <li><a href="" class="d-flex justify-content-center align-items-center">
+                            <svg width="80" fill="#fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                </g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M12 2.03998C6.5 2.03998 2 6.52998 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.84998C10.44 7.33998 11.93 5.95998 14.22 5.95998C15.31 5.95998 16.45 6.14998 16.45 6.14998V8.61998H15.19C13.95 8.61998 13.56 9.38998 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5878 18.0622 20.3855 19.6099 18.57C21.1576 16.7546 22.0054 14.4456 22 12.06C22 6.52998 17.5 2.03998 12 2.03998Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li><a href="" class="d-flex justify-content-center align-items-center">
+                            <svg width="30" fill="#fff" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                </g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="7935ec95c421cee6d86eb22ecd12f847">
+                                        <path style="display: inline;"
+                                            d="M459.186,151.787c0.203,4.501,0.305,9.023,0.305,13.565 c0,138.542-105.461,298.285-298.274,298.285c-59.209,0-114.322-17.357-160.716-47.104c8.212,0.973,16.546,1.47,25.012,1.47 c49.121,0,94.318-16.759,130.209-44.884c-45.887-0.841-84.596-31.154-97.938-72.804c6.408,1.227,12.968,1.886,19.73,1.886 c9.55,0,18.816-1.287,27.617-3.68c-47.955-9.633-84.1-52.001-84.1-102.795c0-0.446,0-0.882,0.011-1.318 c14.133,7.847,30.294,12.562,47.488,13.109c-28.134-18.796-46.637-50.885-46.637-87.262c0-19.212,5.16-37.218,14.193-52.7 c51.707,63.426,128.941,105.156,216.072,109.536c-1.784-7.675-2.718-15.674-2.718-23.896c0-57.891,46.941-104.832,104.832-104.832 c30.173,0,57.404,12.734,76.525,33.102c23.887-4.694,46.313-13.423,66.569-25.438c-7.827,24.485-24.434,45.025-46.089,58.002 c21.209-2.535,41.426-8.171,60.222-16.505C497.448,118.542,479.666,137.004,459.186,151.787z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li><a href="" class="d-flex justify-content-center align-items-center">
+                            <svg width="30" fill="#fff" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                </g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M20.445 5h-8.891A6.559 6.559 0 0 0 5 11.554v8.891A6.559 6.559 0 0 0 11.554 27h8.891a6.56 6.56 0 0 0 6.554-6.555v-8.891A6.557 6.557 0 0 0 20.445 5zm4.342 15.445a4.343 4.343 0 0 1-4.342 4.342h-8.891a4.341 4.341 0 0 1-4.341-4.342v-8.891a4.34 4.34 0 0 1 4.341-4.341h8.891a4.342 4.342 0 0 1 4.341 4.341l.001 8.891z">
+                                    </path>
+                                    <path
+                                        d="M16 10.312c-3.138 0-5.688 2.551-5.688 5.688s2.551 5.688 5.688 5.688 5.688-2.551 5.688-5.688-2.55-5.688-5.688-5.688zm0 9.163a3.475 3.475 0 1 1-.001-6.95 3.475 3.475 0 0 1 .001 6.95zM21.7 8.991a1.363 1.363 0 1 1-1.364 1.364c0-.752.51-1.364 1.364-1.364z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<a class="close_side_menu" href="javascript:void(0);"></a>

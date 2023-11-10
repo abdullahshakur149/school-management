@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="">
+<%- include('../../partials/admin/header') %>
+
+    <body data-domainName="<%= domainName %>">
+        <div id="wrapper" class="wrapper bg-ash">
+
+            <%- include('../../partials/admin/navbar') %>
+
+
+                <!-- Page Area Start Here -->
+                <div class="dashboard-page-one">
+
+
+                    <%- include('../../partials/admin/sidebar') %>
+
+
+                        <script src="/js/jquery-3.3.1.min.js"></script>
+
+                        <%- body %>
+
+
+                </div>
+                <!-- Page Area End Here -->
+        </div>
+
+        <%- include('../../partials/admin/footer') %>
+
+    </body>
+
+</html>

@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from designreset.com/cork/ltr/demo4/apps_invoice-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Oct 2022 23:32:58 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Teacher Register | Soraya Online School </title>
+    <link rel="icon" type="image/x-icon" href="/logos/logo-2.png" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css//plugins.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="/plugins/perfect-scrollbar.css" rel="stylesheet" type="text/css" /> -->
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <!-- <link href="/assets/css/apps/invoice-edit.css" rel="stylesheet" type="text/css"> -->
+    <link href="/assets/css/apps/invoice-add.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/dropify/dropify.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms/theme-checkbox-radio.css">
+    <link href="/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
+    <!--  END CUSTOM STYLE FILE  -->
+
+</head>
+
+<body>
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+        <!--  END SIDEBAR  -->
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="row invoice layout-top-spacing layout-spacing">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <div class="doc-container">
+
+                            <div class="row">
+                                <div class="col-xl-9">
+                                    <%- include('../partials/flash.ejs') %>
+                                        <div class="invoice-content">
+                                            <h2 class="text-info border-left">Register as Teacher</h2>
+
+                                            <div class="invoice-detail-body">
+
+                                                <!-- <div class="invoice-detail-title">
+
+                                                <div class="invoice-logo">
+                                                    <div class="upload">
+                                                        <input type="file" name="profilePicture" id="" class="dropify"
+                                                            data-max-file-size="10M" />
+                                                    </div>
+                                                </div>
+
+                                            </div> -->
+
+                                                <form method="post" action="/teacher/create"
+                                                    class="invoice-detail-header">
+
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-xl-5 invoice-address-company">
+
+                                                            <div class="invoice-address-company-fields">
+
+                                                                <div class="form-group row">
+                                                                    <label for="fullName"
+                                                                        class="col-sm-3 col-form-label col-form-label-sm">Name</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" name="fullName"
+                                                                            class="form-control form-control-sm"
+                                                                            id="fullName" placeholder="Enter full name">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="company-email"
+                                                                        class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            id="email" placeholder="name@gmail.com"
+                                                                            name="email">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="address"
+                                                                        class="col-sm-3 col-form-label col-form-label-sm">Address</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            name="address" id="address" name="address"
+                                                                            placeholder="XYZ Street">
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text" name="role" value="teacher"
+                                                                    class="d-none">
+                                                                <div class="form-group row">
+                                                                    <label for="phoneNo"
+                                                                        class="col-sm-3 col-form-label col-form-label-sm">Phone</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            id="phoneNo" name="phoneNo"
+                                                                            placeholder="Enter phone number">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row invoice-created-by">
+                                                                    <label for="payment-method-country"
+                                                                        class="col-sm-3 col-form-label col-form-label-sm">Country:</label>
+                                                                    <div class="col-sm-9">
+                                                                        <select name="country"
+                                                                            class="form-control country_code  form-control-sm"
+                                                                            id="payment-method-country">
+                                                                            <option value="">Choose Country</option>
+                                                                            <option value="United States">United
+                                                                                States
+                                                                            </option>
+                                                                            <option value="United Kingdom">United
+                                                                                Kingdom
+                                                                            </option>
+                                                                            <option value="Canada">Canada</option>
+                                                                            <option value="Australia">Australia
+                                                                            </option>
+                                                                            <option value="Germany">Germany</option>
+                                                                            <option value="Sweden">Sweden</option>
+                                                                            <option value="Denmark">Denmark</option>
+                                                                            <option value="Norway">Norway</option>
+                                                                            <option value="New-Zealand">New Zealand
+                                                                            </option>
+                                                                            <option value="Afghanistan">Afghanistan
+                                                                            </option>
+                                                                            <option value="Albania">Albania</option>
+                                                                            <option value="Algeria">Algeria</option>
+                                                                            <option value="American-Samoa">Andorra
+                                                                            </option>
+                                                                            <option value="Angola">Angola</option>
+                                                                            <option value="Antigua Barbuda">Antigua
+                                                                                &amp;
+                                                                                Barbuda</option>
+                                                                            <option value="Argentina">Argentina
+                                                                            </option>
+                                                                            <option value="Armenia">Armenia</option>
+                                                                            <option value="Aruba">Aruba</option>
+                                                                            <option value="Austria">Austria</option>
+                                                                            <option value="Azerbaijan">Azerbaijan
+                                                                            </option>
+                                                                            <option value="Bahamas">Bahamas</option>
+                                                                            <option value="Bahrain">Bahrain</option>
+                                                                            <option value="Bangladesh">Bangladesh
+                                                                            </option>
+                                                                            <option value="Barbados">Barbados
+                                                                            </option>
+                                                                            <option value="Belarus">Belarus</option>
+                                                                            <option value="Belgium">Belgium</option>
+                                                                            <option value="Belize">Belize</option>
+                                                                            <option value="Benin">Benin</option>
+                                                                            <option value="Bermuda">Bermuda</option>
+                                                                            <option value="Bhutan">Bhutan</option>
+                                                                            <option value="Bolivia">Bolivia</option>
+                                                                            <option value="Bosnia">Bosnia &amp;
+                                                                                Herzegovina
+                                                                            </option>
+                                                                            <option value="Botswana">Botswana
+                                                                            </option>
+                                                                            <option value="Brazil">Brazil</option>
+                                                                            <option value="British">British Virgin
+                                                                                Islands
+                                                                            </option>
+                                                                            <option value="Brunei">Brunei</option>
+                                                                            <option value="Bulgaria">Bulgaria
+                                                                            </option>
+                                                                            <option value="Burkina">Burkina Faso
+                                                                            </option>
+                                                                            <option value="Burundi">Burundi</option>
+                                                                            <option value="Cambodia">Cambodia
+                                                                            </option>
+                                                                            <option value="Cameroon">Cameroon
+                                                                            </option>
+                                                                            <option value="Cape">Cape Verde</option>
+                                                                            <option value="Cayman">Cayman Islands
+                                                                            </option>
+                                                                            <option value="Central-African">Central
+                                                                                African
+                                                                                Republic</option>
+                                                                            <option value="Chad">Chad</option>
+                                                                            <option value="Chile">Chile</option>
+                                                                            <option value="China">China</option>
+                                                                            <option value="Colombia">Colombia
+                                                                            </option>
+                                                                            <option value="Comoros">Comoros</option>
+                                                                            <option value="Costa-Rica">Costa Rica
+                                                                            </option>
+                                                                            <option value="Croatia">Croatia</option>
+                                                                            <option value="Cuba">Cuba</option>
+                                                                            <option value="Cyprus">Cyprus</option>
+                                                                            <option value="Czechia">Czechia</option>
+                                                                            <option value="Côte">Côte d’Ivoire
+                                                                            </option>
+                                                                            <option value="Djibouti">Djibouti
+                                                                            </option>
+                                                                            <option value="Dominica">Dominica
+                                                                            </option>
+                                                                            <option value="Dominican">Dominican
+                                                                                Republic
+                                                                            </option>
+                                                                            <option value="Ecuador">Ecuador</option>
+                                                                            <option value="Egypt">Egypt</option>
+                                                                            <option value="El-Salvador">El Salvador
+                                                                            </option>
+                                                                            <option value="Equatorial-Guinea">
+                                                                                Equatorial
+                                                                                Guinea
+                                                                            </option>
+                                                                            <option value="Eritrea">Eritrea</option>
+                                                                            <option value="Estonia">Estonia</option>
+                                                                            <option value="Ethiopia">Ethiopia
+                                                                            </option>
+                                                                            <option value="Fiji">Fiji</option>
+                                                                            <option value="Finland">Finland</option>
+                                                                            <option value="France">France</option>
+                                                                            <option value="Gabon">Gabon</option>
+                                                                            <option value="Georgia">Georgia</option>
+                                                                            <option value="Ghana">Ghana</option>
+                                                                            <option value="Greece">Greece</option>
+                                                                            <option value="Grenada">Grenada</option>
+                                                                            <option value="Guatemala">Guatemala
+                                                                            </option>
+                                                                            <option value="Guernsey">Guernsey
+                                                                            </option>
+                                                                            <option value="Guinea">Guinea</option>
+                                                                            <option value="Guinea-Bissau">
+                                                                                Guinea-Bissau
+                                                                            </option>
+                                                                            <option value="Guyana">Guyana</option>
+                                                                            <option value="Haiti">Haiti</option>
+                                                                            <option value="Honduras">Honduras
+                                                                            </option>
+                                                                            <option value="Hong-Kong">Hong Kong SAR
+                                                                                China
+                                                                            </option>
+                                                                            <option value="Hungary">Hungary</option>
+                                                                            <option value="Iceland">Iceland</option>
+                                                                            <option value="India">India</option>
+                                                                            <option value="Indonesia">Indonesia
+                                                                            </option>
+                                                                            <option value="Iran">Iran</option>
+                                                                            <option value="Iraq">Iraq</option>
+                                                                            <option value="Ireland">Ireland</option>
+                                                                            <option value="Israel">Israel</option>
+                                                                            <option value="Italy">Italy</option>
+                                                                            <option value="Jamaica">Jamaica</option>
+                                                                            <option value="Japan">Japan</option>
+                                                                            <option value="Jordan">Jordan</option>
+                                                                            <option value="Kazakhstan">Kazakhstan
+                                                                            </option>
+                                                                            <option value="Kenya">Kenya</option>
+                                                                            <option value="Kuwait">Kuwait</option>
+                                                                            <option value="Kyrgyzstan">Kyrgyzstan
+                                                                            </option>
+                                                                            <option value="Laos">Laos</option>
+                                                                            <option value="Latvia">Latvia</option>
+                                                                            <option value="Lebanon">Lebanon</option>
+                                                                            <option value="Lesotho">Lesotho</option>
+                                                                            <option value="Liberia">Liberia</option>
+                                                                            <option value="Libya">Libya</option>
+                                                                            <option value="Liechtenstein">
+                                                                                Liechtenstein
+                                                                            </option>
+                                                                            <option value="Lithuania">Lithuania
+                                                                            </option>
+                                                                            <option value="Luxembourg">Luxembourg
+                                                                            </option>
+                                                                            <option value="Macedonia">Macedonia
+                                                                            </option>
+                                                                            <option value="Madagascar">Madagascar
+                                                                            </option>
+                                                                            <option value="Malawi">Malawi</option>
+                                                                            <option value="Malaysia">Malaysia
+                                                                            </option>
+                                                                            <option value="Maldives">Maldives
+                                                                            </option>
+                                                                            <option value="Mali">Mali</option>
+                                                                            <option value="Malta">Malta</option>
+                                                                            <option value="Mauritania">Mauritania
+                                                                            </option>
+                                                                            <option value="Mauritius">Mauritius
+                                                                            </option>
+                                                                            <option value="Mexico">Mexico</option>
+                                                                            <option value="Moldova">Moldova</option>
+                                                                            <option value="Monaco">Monaco</option>
+                                                                            <option value="Mongolia">Mongolia
+                                                                            </option>
+                                                                            <option value="Montenegro">Montenegro
+                                                                            </option>
+                                                                            <option value="Morocco">Morocco</option>
+                                                                            <option value="Mozambique">Mozambique
+                                                                            </option>
+                                                                            <option value="Myanmar">Myanmar (Burma)
+                                                                            </option>
+                                                                            <option value="Namibia">Namibia</option>
+                                                                            <option value="Nepal">Nepal</option>
+                                                                            <option value="Netherlands">Netherlands
+                                                                            </option>
+                                                                            <option value="Nicaragua">Nicaragua
+                                                                            </option>
+                                                                            <option value="Niger">Niger</option>
+                                                                            <option value="Nigeria">Nigeria</option>
+                                                                            <option value="North-Korea">North Korea
+                                                                            </option>
+                                                                            <option value="Oman">Oman</option>
+                                                                            <option value="Pakistan">Pakistan
+                                                                            </option>
+                                                                            <option value="Palau">Palau</option>
+                                                                            <option value="Palestinian">Palestinian
+                                                                                Territories
+                                                                            </option>
+                                                                            <option value="Panama">Panama</option>
+                                                                            <option value="Papua">Papua New Guinea
+                                                                            </option>
+                                                                            <option value="Paraguay">Paraguay
+                                                                            </option>
+                                                                            <option value="Peru">Peru</option>
+                                                                            <option value="Philippines">Philippines
+                                                                            </option>
+                                                                            <option value="Poland">Poland</option>
+                                                                            <option value="Portugal">Portugal
+                                                                            </option>
+                                                                            <option value="Puerto">Puerto Rico
+                                                                            </option>
+                                                                            <option value="Qatar">Qatar</option>
+                                                                            <option value="Romania">Romania</option>
+                                                                            <option value="Russia">Russia</option>
+                                                                            <option value="Rwanda">Rwanda</option>
+                                                                            <option value="Réunion">Réunion</option>
+                                                                            <option value="Samoa">Samoa</option>
+                                                                            <option value="San-Marino">San Marino
+                                                                            </option>
+                                                                            <option value="Saudi-Arabia">Saudi
+                                                                                Arabia
+                                                                            </option>
+                                                                            <option value="Senegal">Senegal</option>
+                                                                            <option value="Serbia">Serbia</option>
+                                                                            <option value="Seychelles">Seychelles
+                                                                            </option>
+                                                                            <option value="Sierra-Leone">Sierra
+                                                                                Leone
+                                                                            </option>
+                                                                            <option value="Singapore">Singapore
+                                                                            </option>
+                                                                            <option value="Slovakia">Slovakia
+                                                                            </option>
+                                                                            <option value="Slovenia">Slovenia
+                                                                            </option>
+                                                                            <option value="Solomon-Islands">Solomon
+                                                                                Islands
+                                                                            </option>
+                                                                            <option value="Somalia">Somalia</option>
+                                                                            <option value="South-Africa">South
+                                                                                Africa
+                                                                            </option>
+                                                                            <option value="South-Korea">South Korea
+                                                                            </option>
+                                                                            <option value="Spain">Spain</option>
+                                                                            <option value="Sri-Lanka">Sri Lanka
+                                                                            </option>
+                                                                            <option value="Sudan">Sudan</option>
+                                                                            <option value="Suriname">Suriname
+                                                                            </option>
+                                                                            <option value="Swaziland">Swaziland
+                                                                            </option>
+                                                                            <option value="Switzerland">Switzerland
+                                                                            </option>
+                                                                            <option value="Syria">Syria</option>
+                                                                            <option value="Sao-Tome-and-Principe">
+                                                                                São
+                                                                                Tomé &amp;
+                                                                                Príncipe</option>
+                                                                            <option value="Tajikistan">Tajikistan
+                                                                            </option>
+                                                                            <option value="Tanzania">Tanzania
+                                                                            </option>
+                                                                            <option value="Thailand">Thailand
+                                                                            </option>
+                                                                            <option value="Timor-Leste">Timor-Leste
+                                                                            </option>
+                                                                            <option value="Togo">Togo</option>
+                                                                            <option value="Tonga">Tonga</option>
+                                                                            <option value="Trinidad-and-Tobago">
+                                                                                Trinidad
+                                                                                &amp;
+                                                                                Tobago</option>
+                                                                            <option value="Tunisia">Tunisia</option>
+                                                                            <option value="Turkey">Turkey</option>
+                                                                            <option value="Turkmenistan">
+                                                                                Turkmenistan
+                                                                            </option>
+                                                                            <option value="Uganda">Uganda</option>
+                                                                            <option value="Ukraine">Ukraine</option>
+                                                                            <option value="UAE">United Arab Emirates
+                                                                            </option>
+                                                                            <option value="Uruguay">Uruguay</option>
+                                                                            <option value="Uzbekistan">Uzbekistan
+                                                                            </option>
+                                                                            <option value="Vanuatu">Vanuatu</option>
+                                                                            <option value="Venezuela">Venezuela
+                                                                            </option>
+                                                                            <option value="Vietnam">Vietnam</option>
+                                                                            <option value="Yemen">Yemen</option>
+                                                                            <option value="Zambia">Zambia</option>
+                                                                            <option value="Zimbabwe">Zimbabwe
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <div
+                                                                        class="col-12 invoice-address-client  d-flex flex-wrap align-items-center">
+
+                                                                        <label for="phoneNo"
+                                                                            class="col-sm-3 col-form-label col-form-label-sm mb-4 p-1">Gender</label>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text radio-checkbox">
+                                                                                <input type="radio" name="gender"
+                                                                                    class="new-control-input"
+                                                                                    value="male">
+                                                                                <span class="new-chk-content"
+                                                                                    style="padding-left: 0.2rem;">male</span>
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text radio-checkbox">
+                                                                                <input type="radio" name="gender"
+                                                                                    class="new-control-input"
+                                                                                    value="female">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content"
+                                                                                    style="padding-left: 0.2rem;">female</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="col-xl-5 invoice-address-client border">
+                                                            <div class="invoice-address-client-fields">
+                                                                <h6>Please select the subjects that you are able to
+                                                                    teach.
+                                                                </h6>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="math">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Math</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="english">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">English</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="history">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">History</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="science">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Science</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="art">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Art</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="music">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Music</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="pushto">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Pushto</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="biology">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Biology</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="physics">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span
+                                                                                    class="new-chk-content">Physics</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="social Studies">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Social
+                                                                                    Studies</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="religious education">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Religious
+                                                                                    Education</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="business studies">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Foreign
+                                                                                    Language</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="computer science">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Computer
+                                                                                    Science</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="business studies">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Business
+                                                                                    Studies</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div class="n-chk mb-4 p-1">
+                                                                            <label
+                                                                                class="new-control new-checkbox new-checkbox-text checkbox-primary">
+                                                                                <input type="checkbox" name="subjects[]"
+                                                                                    class="new-control-input"
+                                                                                    value="skills sducation">
+                                                                                <span
+                                                                                    class="new-control-indicator"></span>
+                                                                                <span class="new-chk-content">Skills
+                                                                                    Education</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="invoice-detail-terms">
+
+                                                            <div class="row justify-content-between mb-5">
+                                                                <div
+                                                                    class="checkbox-list d-flex flex-wrap justify-content-center">
+                                                                    <div class="col-md-3 d-none">
+
+                                                                        <div class="form-group mb-4">
+                                                                            <label for="number">Invoice Number</label>
+                                                                            <input type="text"
+                                                                                class="form-control form-control-sm"
+                                                                                id="number" placeholder="#0001">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-md-3 d-none">
+
+                                                                        <div class="form-group mb-4">
+                                                                            <label for="date">Invoice Date</label>
+                                                                            <input type="text"
+                                                                                class="form-control form-control-sm"
+                                                                                id="date" placeholder="Add date picker">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 d-none">
+                                                                        <div class="form-group mb-4">
+                                                                            <label for="due">Due Date</label>
+                                                                            <input type="text"
+                                                                                class="form-control form-control-sm"
+                                                                                id="due" placeholder="None">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="invoice-detail-items border-bottom p-0 p-sm-3">
+                                                                <h6>Provide Qualification</h6>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered item-table">
+
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="delete-item-row">
+                                                                                    <ul class="table-controls">
+                                                                                        <li><a href="javascript:void(0);"
+                                                                                                class="delete-item"
+                                                                                                data-toggle="tooltip"
+                                                                                                data-placement="top"
+                                                                                                title=""
+                                                                                                data-original-title="Delete"><svg
+                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                    width="24"
+                                                                                                    height="24"
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                    fill="none"
+                                                                                                    stroke="currentColor"
+                                                                                                    stroke-width="2"
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    class="feather feather-x-circle">
+                                                                                                    <circle cx="12"
+                                                                                                        cy="12" r="10">
+                                                                                                    </circle>
+                                                                                                    <line x1="15" y1="9"
+                                                                                                        x2="9" y2="15">
+                                                                                                    </line>
+                                                                                                    <line x1="9" y1="9"
+                                                                                                        x2="15" y2="15">
+                                                                                                    </line>
+                                                                                                </svg></a></li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                                <td class="description">
+                                                                                    <input
+                                                                                        name="qualification[qual1][name]"
+                                                                                        type="text"
+                                                                                        class="form-control form-control-sm"
+                                                                                        placeholder="Qualification Name">
+                                                                                </td>
+                                                                                <td class="description">
+                                                                                    <input type="text"
+                                                                                        name="qualification[qual1][issuingAuthority]"
+                                                                                        class="form-control form-control-sm"
+                                                                                        placeholder="Issuing Authority">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+
+                                                                <button type="button"
+                                                                    class="btn btn-secondary additem btn-sm mb-3">Add
+                                                                    Qualification</button>
+
+                                                            </div>
+
+
+                                                            <div class="invoice-detail-items p-0 p-sm-3 mt-2">
+                                                                <h6>Provide Experience</h6>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered item-table1">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="delete-item-row">
+                                                                                    <ul class="table-controls">
+                                                                                        <li><a href="javascript:void(0);"
+                                                                                                class="delete-item-edit"
+                                                                                                data-toggle="tooltip"
+                                                                                                data-placement="top"
+                                                                                                title=""
+                                                                                                data-original-title="Delete"><svg
+                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                    width="24"
+                                                                                                    height="24"
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                    fill="none"
+                                                                                                    stroke="currentColor"
+                                                                                                    stroke-width="2"
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    class="feather feather-x-circle">
+                                                                                                    <circle cx="12"
+                                                                                                        cy="12" r="10">
+                                                                                                    </circle>
+                                                                                                    <line x1="15" y1="9"
+                                                                                                        x2="9" y2="15">
+                                                                                                    </line>
+                                                                                                    <line x1="9" y1="9"
+                                                                                                        x2="15" y2="15">
+                                                                                                    </line>
+                                                                                                </svg></a></li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                                <td class="description"><input
+                                                                                        type="text"
+                                                                                        class="form-control form-control-sm"
+                                                                                        name="teachingExperience[exp1][subName]"
+                                                                                        placeholder="Subject Name">
+                                                                                </td>
+                                                                                <td class="description">
+                                                                                    <select class="form-control"
+                                                                                        name="teachingExperience[exp1][grade]"
+                                                                                        placeholder="Grade">
+                                                                                        <option selected value="">
+                                                                                            --Grade--
+                                                                                        </option>
+                                                                                        <option value="1">1</option>
+                                                                                        <option value="2">2</option>
+                                                                                        <option value="3">3</option>
+                                                                                        <option value="4">4</option>
+                                                                                        <option value="5">5</option>
+                                                                                        <option value="6">6</option>
+                                                                                        <option value="7">7</option>
+                                                                                        <option value="8">8</option>
+                                                                                        <option value="9">9</option>
+                                                                                        <option value="10">10</option>
+                                                                                        <option value="11">11</option>
+                                                                                        <option value="12">12</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td class="description">
+                                                                                    <input type="text"
+                                                                                        name="teachingExperience[exp1][institution_name]"
+                                                                                        class="form-control form-control-sm"
+                                                                                        placeholder="Institution name">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <button type="button"
+                                                                    class="btn btn-secondary edititem btn-sm">Add
+                                                                    Experience</button>
+
+                                                            </div>
+
+                                                            <div
+                                                                class="form-group d-flex flex-column align-items-end mt-5">
+                                                                <div class="col-sm-9">
+                                                                    <input type="password"
+                                                                        class="form-control form-control-sm"
+                                                                        id="password" placeholder="Choose password"
+                                                                        name="password">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group d-flex flex-column align-items-end">
+                                                                <div class="col-sm-9">
+                                                                    <input type="password"
+                                                                        class="form-control form-control-sm"
+                                                                        id="password_conf"
+                                                                        placeholder="Confirm password"
+                                                                        name="password_conf">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="msg bg-danger p-2 text-right rounded d-none">
+                                                                Password did not match
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+                                                        <button class="btn btn-dark ml-auto mt-5">Register</button>
+
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+
+
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  END CONTENT AREA  -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+    <!-- Select day and time slot -->
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.getAttribute('data-day')) {
+                checkbox.addEventListener('change', () => {
+                    const day = checkbox.dataset.day;
+                    const slotsContainer = document.getElementById(`${day}-slots`);
+                    if (checkbox.checked) {
+                        slotsContainer.style.display = 'flex';
+                    } else {
+                        slotsContainer.style.display = 'none';
+                        for (timeCheckbox of document.getElementsByName(`day[${[da]}[slot]`)) {
+                            if (timeCheckbox.checked) {
+                                timeCheckbox.checked = false;
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- confirm Password -->
+    <script>
+        document.querySelector('form').addEventListener('submit', function (evt) {
+            if (document.getElementById('password').value == '') {
+                evt.stopPropagation();
+                evt.preventDefault();
+                document.querySelector('.msg').classList.remove('d-none');
+                document.querySelector('.msg').innerHTML = "Password must be provided"
+            }
+            if (document.getElementById('password').value != document.getElementById('password_conf').value) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                document.querySelector('.msg').classList.remove('d-none');
+                document.querySelector('.msg').innerHTML = "Password did not match"
+            }
+        })
+    </script>
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <script src="/plugins/dropify/dropify.min.js"></script>
+    <script src="/plugins/flatpickr/flatpickr.js"></script>
+    <script src="/assets/js/apps/invoice-add.js"></script>
+    <script src="/assets/js/apps/invoice-edit.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<% layout('layouts/admin/boilerplate') %>
+    <link href="/plugins/loaders/custom-loader.css" rel="stylesheet" type="text/css">
+    <div class="dashboard-content-one">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>All Teachers
+                        </h3>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>Name</th>
+                                <th>Phone #</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th class="">Subjects/Class</th>
+                                <th class="">
+
+                                </th>
+                                <th class="d-none">Phone</th>
+                                <th class="d-none">E-mail</th>
+                                <th class="d-none"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% if (allTeachers){ %>
+                                <% for (let teacher of allTeachers){ %>
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/teacher/<%= teacher._id %>/view">
+                                                <%= teacher._id %>
+                                            </a>
+                                        </td>
+                                        <td class="">
+                                            <%= teacher.userInfo.fullName %>
+                                        </td>
+                                        <td>
+                                            <%= teacher.phoneNo ? teacher.phoneNo : '--' %>
+                                        </td>
+                                        <td>
+                                            <%= teacher.address+', '+ teacher.country %>
+
+                                        </td>
+                                        <td>
+                                            <%= teacher.userInfo.email %>
+
+                                        </td>
+                                        <td class=""> 
+                                            <% if (teacher.assigned_subjects.length){ %>
+                                            <% for(let subject of teacher.assigned_subjects){ %>
+                                                <a href="/admin/class/<%= subject.class._id %>/view">
+                                                    <%= subject.name.charAt(0).toUpperCase() + subject.name.slice(1) %>/<%= subject.class.classLevel %>-<%= subject.class.section %> 
+                                                </a>
+                                                <br>
+                                                <% } %>
+                                                <% }else{ %>
+                                                    N/A
+                                                <% } %>
+
+                                        </td>
+
+                                        <td class="">
+                                           
+                                        </td>
+
+                                        <td class="d-none">+ 123 9988568</td>
+                                        <td class="d-none">kazifahim93@gmail.com</td>
+                                        <td class="d-none">
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }} %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>

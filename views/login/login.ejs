@@ -1,0 +1,85 @@
+<%- include('../partials/header') %>
+
+    <body>
+        <div class="rbt-elements-area bg-color-white rbt-section-gap">
+            <div class="container">
+                <div class="row gy-5 row--30">
+
+                    <div class="col-lg-6">
+                        <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+                            <%- include('../partials/flash') %>
+
+                                <h3 class="title">Login</h3>
+                                <form class="max-width-auto" method="post" action="/login">
+                                    <div class="form-group">
+                                        <input name="email" type="email" id="email">
+                                        <label>Type Email</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="password" type="password" id="password">
+                                        <label>Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+
+                                    <div class="form-submit-group">
+                                        <button type="submit"
+                                            class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
+                                            <span class="icon-reverse-wrapper">
+                                                <span class="btn-text">Log In<svg class="p-1" width="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path opacity="0.1"
+                                                                d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                                                fill="#323232"></path>
+                                                            <path
+                                                                d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                                                stroke="#323232" stroke-width="2"></path>
+                                                            <path d="M16 12L8 12" stroke="#323232" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M13 15L15.913 12.087V12.087C15.961 12.039 15.961 11.961 15.913 11.913V11.913L13 9"
+                                                                stroke="#323232" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </g>
+                                                    </svg></span>
+
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                                <h3 class="without-icon color-primary text-center mt-5">
+                                    <span class="">OR</span>
+                                </h3>
+                                <div class="inner d-flex justify-content-center">
+                                    <span class=" d-block">
+                                        <a class="rbt-moderbt-btn" href="/register">
+                                            <span class="moderbt-btn-text ">Register</span>
+                                        </a>
+
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- include footer -->
+        <%- include('../partials/footer') %>
+            <script>
+                const focusField = function () {
+                    document.getElementById("email").focus();
+                };
+                focusField();
+            </script>
+
+    </body>
+
+    </html>

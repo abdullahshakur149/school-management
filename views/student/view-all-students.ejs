@@ -1,0 +1,107 @@
+<% layout('layouts/admin/boilerplate') %>
+    <link href="/plugins/loaders/custom-loader.css" rel="stylesheet" type="text/css">
+    <div class="dashboard-content-one">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>All <%= currentUrl.split('/')[4].charAt(0).toUpperCase()+currentUrl.split('/')[4].slice(1)
+                                %>
+                        </h3>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>Name</th>
+                                <th>Phone #</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th class="">
+                                    Enroll Status</th>
+                                <th class="">
+                                    <% if (currentUrl.split('/')[4]=='enrolled' ){ %>
+                                        Class/Section
+                                        <% }else if(currentUrl.split('/')[4]=='static' ){ %>
+                                            Grade
+                                            <% }else if(currentUrl.split('/')[4]=='requests' ){ %>
+                                                Requested Class
+                                                <% } %>
+                                </th>
+                                <th class="d-none">Phone</th>
+                                <th class="d-none">E-mail</th>
+                                <th class="d-none"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% if (allStudents){ %>
+                                <% for (let student of allStudents){ %>
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/student/<%= student._id %>/view">
+                                                <%= student._id %>
+                                            </a>
+                                        </td>
+                                        <td class="">
+                                            <%= student.userInfo.fullName %>
+                                        </td>
+                                        <td>
+                                            <%= student.contact.phoneNo ? student.contact.phoneNo : '--' %>
+                                        </td>
+                                        <td>
+                                            <%= student.contact.address.streetAddress +', '+ student.contact.address.country %>
+
+                                        </td>
+                                        <td>
+                                            <%= student.userInfo.email %>
+
+                                        </td>
+                                        <td class=""><%= student.admitted ? ' Enrolled' : 'Not Enrolled' %>
+                                        </td>
+
+                                        <td class="">
+                                            <% if (currentUrl.split('/')[4]=='enrolled' ){ %>
+                                                <a href="/admin/class/<%= student.admittedClass._id %>/view">
+                                                    <%= student.admittedClass.classLevel+'/'+student.admittedClass.section
+                                                        %>
+                                                </a>
+                                                <% }else if(currentUrl.split('/')[4]=='static' ){ %>
+                                                    <%= student.grade %>
+                                                        <% }else if(currentUrl.split('/')[4]=='static' ){ %>
+                                                            9
+
+                                                            <% } %>
+                                        </td>
+
+                                        <td class="d-none">+ 123 9988568</td>
+                                        <td class="d-none">kazifahim93@gmail.com</td>
+                                        <td class="d-none">
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }} %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>

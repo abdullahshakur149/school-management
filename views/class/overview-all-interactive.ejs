@@ -1,0 +1,217 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <div class="rbt-page-banner-wrapper background-choice">
+        <!-- Start Banner BG Image  -->
+        <div class=""></div>
+        <!-- End Banner BG Image  -->
+        <div class="rbt-banner-content">
+
+            <!-- Start Banner Content Top  -->
+            <div class="rbt-banner-content-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Start Breadcrumb Area  -->
+                            <ul class="page-list">
+                                <li class="rbt-breadcrumb-item"><a href="/" class=" text-white">Home</a></li>
+                                <li>
+                                    <div class="icon-right"><svg width="15" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            transform="matrix(1, 0, 0, -1, 0, 0)rotate(90)">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M18 15L12 9L6 15" stroke="#fff" stroke-width="2"></path>
+                                            </g>
+                                        </svg></div>
+                                </li>
+                                <li class="rbt-breadcrumb-item active text-white">All Classes</li>
+                            </ul>
+                            <!-- End Breadcrumb Area  -->
+
+                            <div class=" title-wrapper">
+                                <h1 class="title mb--0 text-white">All Interactive</h1>
+                                <a href="#" class="rbt-badge-2">
+                                    <div class="image">🎉</div> 50 Classes in total
+                                </a>
+                            </div>
+
+                            <p class="description text-white">Classes that are carefully designed to educate. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Banner Content Top  -->
+            <!-- Start Course Top  -->
+            <div class="rbt-course-top-wrapper mt--40 mt_sm--20">
+                <div class="container">
+                    <div class="row g-5 align-items-center">
+
+                        <div class="col-lg-5 col-md-12">
+                            <div class="rbt-sorting-list d-flex flex-wrap align-items-center">
+                                <div class="rbt-short-item switch-layout-container">
+                                    <ul class="course-switch-layout">
+                                        <li class="course-switch-item"><button class="rbt-grid-view active"
+                                                title="Grid Layout"><svg width="20" fill="#000" viewBox="0 0 32 32"
+                                                    version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#000">
+                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                        stroke-linejoin="round"></g>
+                                                    <g id="SVGRepo_iconCarrier">
+                                                        <path
+                                                            d="M30 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2zM30 20h-10v10h10v-10zM30 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.104-0.895 2-2 2zM30 2h-10v10h10v-10zM12 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.105-0.896 2-2 2zM12 20h-10v10h10v-10zM12 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.104-0.896 2-2 2zM12 2h-10v10h10v-10z">
+                                                        </path>
+                                                    </g>
+                                                </svg> <span class="text">Grid</span></button></li>
+                                        <li class="course-switch-item"><button class="rbt-list-view"
+                                                title="List Layout"><svg width="20" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                        stroke-linejoin="round"></g>
+                                                    <g id="SVGRepo_iconCarrier">
+                                                        <g id="Edit / List_Unordered">
+                                                            <path id="Vector"
+                                                                d="M9 17H19M9 12H19M9 7H19M5.00195 17V17.002L5 17.002V17H5.00195ZM5.00195 12V12.002L5 12.002V12H5.00195ZM5.00195 7V7.002L5 7.00195V7H5.00195Z"
+                                                                stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg> <span class="text">List</span></button></li>
+                                    </ul>
+                                </div>
+                                <div class="rbt-short-item">
+                                    <span class="course-index text-white">Showing 1-9 of 19 results</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Course Top  -->
+        </div>
+    </div>
+
+
+    <div class="rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="inner">
+            <div class="container">
+                <div class="rbt-course-grid-column">
+
+                    <% for (let cls of clss){ %>
+                        <!-- Start Single Card  -->
+                        <div class="course-grid-3">
+                            <div class="rbt-card variation-01 rbt-hover">
+                                <div class="rbt-card-body">
+                                    <div class="rbt-card-top">
+                                        <div class="rbt-review">
+                                            <div class="rating">
+                                                <svg width="20" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg" stroke="#ffea00">
+                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                        stroke-linejoin="round"></g>
+                                                    <g id="SVGRepo_iconCarrier">
+                                                        <path
+                                                            d="M21.12 9.88005C21.0781 9.74719 20.9996 9.62884 20.8935 9.53862C20.7873 9.4484 20.6579 9.38997 20.52 9.37005L15.1 8.58005L12.67 3.67005C12.6008 3.55403 12.5027 3.45795 12.3853 3.39123C12.2678 3.32451 12.1351 3.28943 12 3.28943C11.8649 3.28943 11.7322 3.32451 11.6147 3.39123C11.4973 3.45795 11.3991 3.55403 11.33 3.67005L8.89999 8.58005L3.47999 9.37005C3.34211 9.38997 3.21266 9.4484 3.10652 9.53862C3.00038 9.62884 2.92186 9.74719 2.87999 9.88005C2.83529 10.0124 2.82846 10.1547 2.86027 10.2907C2.89207 10.4268 2.96124 10.5512 3.05999 10.6501L6.99999 14.4701L6.06999 19.8701C6.04642 20.0091 6.06199 20.1519 6.11497 20.2826C6.16796 20.4133 6.25625 20.5267 6.36999 20.6101C6.48391 20.6912 6.61825 20.7389 6.75785 20.7478C6.89746 20.7566 7.03675 20.7262 7.15999 20.6601L12 18.1101L16.85 20.6601C16.9573 20.7189 17.0776 20.7499 17.2 20.7501C17.3573 20.7482 17.5105 20.6995 17.64 20.6101C17.7537 20.5267 17.842 20.4133 17.895 20.2826C17.948 20.1519 17.9636 20.0091 17.94 19.8701L17 14.4701L20.93 10.6501C21.0305 10.5523 21.1015 10.4283 21.1351 10.2922C21.1687 10.1561 21.1634 10.0133 21.12 9.88005Z"
+                                                            fill="#ffea00"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <span class="rating-count"> (15 Reviews)</span>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="rbt-card-title"><a href="<%= `/class/interactive/${cls._id}/view` %>">
+                                            <%= `Class ${cls.classLevel}` %>
+                                        </a>
+                                    </h4>
+
+                                    <ul class="rbt-meta">
+                                        <li>
+                                            <%= cls.courses.length %> Subjects
+                                        </li>
+                                        <li>
+                                            <%= cls.students.length %> Students
+                                        </li>
+                                    </ul>
+
+                                    <p class="rbt-card-text">It is a long established fact that a reader will be
+                                        distracted.</p>
+
+                                    <div class="rbt-card-bottom">
+                                        <div class="rbt-price">
+                                        </div>
+                                        <a class="rbt-btn-link" href="/class/interactive/<%= cls._id %>/view">Learn
+                                            More &nbsp; <svg width="12" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000"
+                                                transform="matrix(-1, 0, 0, 1, 0, 0)">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                    stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path stroke="#fffff" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M18 10H2m0 0l7-7m-7 7l7 7"></path>
+                                                </g>
+                                            </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Card  -->
+
+                        <% } %>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt--60">
+                        <nav>
+                            <ul class="rbt-pagination">
+                                <li><a href="#" aria-label="Previous">
+                                        <svg width="20" fill="#000000" viewBox="0 0 32 32" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg" transform="rotate(-90)">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    d="M0.256 23.481c0 0.269 0.106 0.544 0.313 0.75 0.412 0.413 1.087 0.413 1.5 0l14.119-14.119 13.913 13.912c0.413 0.413 1.087 0.413 1.5 0s0.413-1.087 0-1.5l-14.663-14.669c-0.413-0.412-1.088-0.412-1.5 0l-14.869 14.869c-0.213 0.212-0.313 0.481-0.313 0.756z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#" aria-label="Next"><svg width="20" fill="#000000" viewBox="0 0 32 32"
+                                            version="1.1" xmlns="http://www.w3.org/2000/svg" transform="rotate(90)">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    d="M0.256 23.481c0 0.269 0.106 0.544 0.313 0.75 0.412 0.413 1.087 0.413 1.5 0l14.119-14.119 13.913 13.912c0.413 0.413 1.087 0.413 1.5 0s0.413-1.087 0-1.5l-14.663-14.669c-0.413-0.412-1.088-0.412-1.5 0l-14.869 14.869c-0.213 0.212-0.313 0.481-0.313 0.756z">
+                                                </path>
+                                            </g>
+                                        </svg></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+
+
+        </body>
+
+        </html>

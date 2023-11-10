@@ -1,0 +1,457 @@
+<% layout('layouts/boilerplate') %>
+
+
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms/theme-checkbox-radio.css">
+    <style>
+        /* Style for the select element */
+        .selectEl {
+            /* Change the font family and size */
+            font-family: Arial, sans-serif !important;
+            font-size: 16px !important;
+            /* Remove the default styling */
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            /* Add some padding and border */
+            padding: 8px !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+            /* Add a background color and a custom arrow */
+            background-color: #fff !important;
+            background-image: url("path/to/custom-arrow.svg") !important;
+            background-repeat: no-repeat !important;
+            background-position: right center !important;
+        }
+
+        /* Style for the dropdown arrow */
+        .selectEl::-ms-expand {
+            display: none !important;
+        }
+
+        /* Style for the dropdown options */
+        .selectEl option {
+            /* Change the font family and size */
+            font-family: Arial, sans-serif !important;
+            font-size: 16px !important;
+            /* Add some padding */
+            padding: 8px !important;
+            /* Change the background color when selected */
+            background-color: #eee !important;
+        }
+
+        /* Style for the dropdown when it's open */
+        .selectEl:focus {
+            /* Change the border color */
+            border-color: #007bff !important;
+            /* Add a box shadow */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25) !important;
+            outline: none !important;
+        }
+    </style>
+
+
+    <h1 class="title p-3">Register</h1>
+    <%- include('../partials/flash.ejs') %>
+        <form class="col-lg-12 d-flex flex-wrap" method="post" action="/student/register">
+            <div style="z-index: unset !important;"
+                class="col-12 col-lg-6 col-sm-12 rbt-contact-form contact-form-style-1 max-width-auto shadow-none">
+                <h5 class="title text-center">Basic Information</h5>
+                <div class="max-width-auto">
+                    <div class="form-group">
+                        <input name="fullName" type="text" id="fullName">
+                        <label>Full Name</label>
+                        <span class="focus-border"></span>
+                    </div>
+                    <div class="form-group">
+                        <input name="fatherName" type="text" id="fatherName">
+                        <label>Father Name</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="invoice-address-client-fields">
+                        <h6>Select your education level(<small>Select your class</small>)
+                        </h6>
+                        <div class="row">
+                            <div class="col-12 invoice-address-client border d-flex flex-wrap">
+
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="1">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">1</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="2">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">2</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="3">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">3</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="4">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">4</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="5">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">5</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="6">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">6</span>
+                                    </label>
+                                </div>
+
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="7">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">7</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="8">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">8</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="9">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">9</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="10">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">10</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="11">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">11</span>
+                                    </label>
+                                </div>
+                                <div class="n-chk mb-4 p-1">
+                                    <label class="new-control new-radio new-radio-text radio-primary">
+                                        <input type="radio" name="grade" class="new-control-input" value="12">
+                                        <span class="new-control-indicator"></span>
+                                        <span class="new-chk-content" style="padding-left: 1rem;">12</span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row mt-4">
+                        <div class="col-12 invoice-address-client  d-flex flex-wrap p-0 align-items-center">
+                            <h6 class="d-flex justify-content-center align-items-center mb-4 p-1">Select
+                                gender:
+                            </h6>
+
+                            <div class="n-chk mb-4 p-1">
+                                <label class="new-control new-radio new-radio-text radio-primary">
+                                    <input type="radio" name="gender" class="new-control-input" value="male">
+                                    <span class="new-chk-content" style="padding-left: 1rem;">male</span>
+                                    <span class="new-control-indicator"></span>
+                                </label>
+                            </div>
+                            <div class="n-chk mb-4 p-1">
+                                <label class="new-control new-radio new-radio-text radio-primary">
+                                    <input type="radio" name="gender" class="new-control-input" value="female">
+                                    <span class="new-control-indicator"></span>
+                                    <span class="new-chk-content" style="padding-left: 1rem;">female</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div style="z-index: unset !important;"
+                class="col-12 col-lg-6 col-sm-12 rbt-contact-form contact-form-style-1 max-width-auto shadow-none">
+                <h5 class="title text-center">Contact Information</h5>
+                <div class="max-width-auto">
+                    <div class="form-group">
+                        <input name="email" type="email" id="email">
+                        <label>Email address</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input name="contact[phoneNo]" type="number" id="phoneNo">
+                        <label>Phone Number(<small>optional</small>)</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input name="contact[address][streetAddress]" type="text" id="streed">
+                        <label>Full Address(<small>street, district, province</small>)</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between">
+                    <div class="form-group d-flex flex-column">
+                        <div for="country">Country</div>
+                        <select name="contact[address][country]" class="form-control selectEl" id="country">
+                            <option selected="">Afghanistan</option>
+                            <option>Pakistan
+                            </option>
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column justify-content-end">
+                        <label class="dob-input d-flex align-items-center pr-5">Date
+                            of
+                            Birth</label>
+                        <div class="d-sm-flex d-block ml-5">
+                            <div class="form-group mr-1">
+                                <select name="DOB[]" class="form-control selectEl" id="bornDay">
+                                    <option>Day</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                    <option>13</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>16</option>
+                                    <option>17</option>
+                                    <option>18</option>
+                                    <option>19</option>
+                                    <option selected="">20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-1">
+                                <select name="DOB[]" class="form-control selectEl" id="bornMonth">
+                                    <option>Month</option>
+                                    <option selected="">Jan</option>
+                                    <option>Feb</option>
+                                    <option>Mar</option>
+                                    <option>Apr</option>
+                                    <option>May</option>
+                                    <option>Jun</option>
+                                    <option>Jul</option>
+                                    <option>Aug</option>
+                                    <option>Sep</option>
+                                    <option>Oct</option>
+                                    <option>Nov</option>
+                                    <option>Dec</option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-1">
+                                <select name="DOB[]" class="form-control selectEl" id="BornYear">
+                                    <option>Year</option>
+                                    <option>2029</option>
+                                    <option>2028</option>
+                                    <option>2027</option>
+                                    <option>2026</option>
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                    <option>2021</option>
+                                    <option>2020</option>
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                    <option>2012</option>
+                                    <option>2011</option>
+                                    <option>2010</option>
+                                    <option>2009</option>
+                                    <option>2008</option>
+                                    <option>2007</option>
+                                    <option>2006</option>
+                                    <option>2005</option>
+                                    <option>2004</option>
+                                    <option>2003</option>
+                                    <option>2002</option>
+                                    <option>2001</option>
+                                    <option>2000</option>
+                                    <option>1999</option>
+                                    <option>1998</option>
+                                    <option>1997</option>
+                                    <option>1996</option>
+                                    <option>1995</option>
+                                    <option>1994</option>
+                                    <option>1993</option>
+                                    <option>1992</option>
+                                    <option>1991</option>
+                                    <option>1990</option>
+                                    <option selected="">1989</option>
+                                    <option>1988</option>
+                                    <option>1987</option>
+                                    <option>1986</option>
+                                    <option>1985</option>
+                                    <option>1984</option>
+                                    <option>1983</option>
+                                    <option>1982</option>
+                                    <option>1981</option>
+                                    <option>1980</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="z-index: unset !important;"
+                class="col-12 rbt-contact-form contact-form-style-1 max-width-auto shadow-none">
+                <h5 class="title text-center">Education Information</h5>
+                <div class="col-12 d-flex justify-content-center flex-column align-items-center">
+                    <div class="form-group col-12 col-lg-6">
+                        <input name="education[instituteName]" type="text" id="instituteName">
+                        <label>Enter School name(<small>if any</small>)</label>
+                        <span class="focus-border"></span>
+                    </div>
+                    <div class="form-group col-12 col-lg-6">
+                        <div>Select previous education level</div>
+                        <select name="education[previous_grade]" class="form-control" id="grade">
+                            <option disabled selected value="">--Previous grade--</option>
+                            <option value="none">none
+                            </option>
+                            <option value="1">1st
+                            </option>
+                            <option value="2">
+                                2nd
+                            </option>
+                            <option value="3">3rd
+                            </option>
+                            <option value="4">4th
+                            </option>
+                            <option value="5">5th
+                            </option>
+                            <option value="6">6th
+                            </option>
+                            <option value="7">7th
+                            </option>
+                            <option value="8">8th
+                            </option>
+                            <option value="9">9th
+                            </option>
+                            <option value="10">10th
+                            </option>
+                            <option value="11">College first year
+                            </option>
+                            <option value="12">College 2nd year
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="d-flex flex-column align-items-center col-12 p-4">
+                <div class=" col-6 bg-danger p-3 mb-3 rounded text-white text-center d-none" id="msg">
+                    Password did not
+                    match
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                    <input name="password" type="password" id="password">
+                    <label>Password</label>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                    <input name="conf_password" type="password" id="conf_password">
+                    <label>Confirm Password</label>
+                    <span class="focus-border"></span>
+                </div>
+
+
+                <div class="d-flex justify-content-center col-12">
+                    <div class="form-submit-group w-50 d-flex justify-content-end justify-content-sm-center">
+                        <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Register</span>
+                                <span class="btn-icon"><img src="/svg/greater-sign.svg" alt=""></span>
+                                <span class="btn-icon"><img src="/svg/greater-sign.svg" alt=""></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <input type="text" name="role" value="student" class="d-none">
+
+
+
+        </form>
+
+
+        <%- include('../partials/footer') %>
+            <!-- add required to inputs -->
+            <script>
+                for (let input of document.querySelectorAll('input')) {
+                    const inputId = input.id;
+                    if (inputId != 'phoneNo' && inputId != 'instituteName' && inputId != 'grade') {
+                        input.setAttribute('required', '');
+                    }
+                }
+            </script>
+            <!-- Check password before submitting -->
+            <script>
+                document.querySelector('form').addEventListener('submit', function (evt) {
+                    if (document.getElementById('password').value !== document.getElementById('conf_password').value) {
+                        document.getElementById('msg').classList.remove('d-none');
+                        evt.preventDefault()
+                        evt.stopPropagation();
+                    }
+                })
+            </script>
+            </body>
+
+            </html>
